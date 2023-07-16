@@ -20,7 +20,7 @@ h3{
  
 .weatherDiv {
     position: relative;
-    animation: fadeInUp 1.5s;
+    /*animation: fadeInUp 1.5s;*/
     height: 600px;
 }
 

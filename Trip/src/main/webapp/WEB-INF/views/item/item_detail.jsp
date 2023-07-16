@@ -144,7 +144,7 @@
   </div>
 </div>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=667f5ed1f72a801ed09ae8d4668f32a8&libraries=services"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9dff8063ba2a732b36c1eea435641f48&libraries=services"></script>
 <script src="/resources/js/item/slideImg.js" type="text/javascript"></script>
 <script src="/resources/js/item/item_detail.js?ver=16" type="text/javascript"></script>
 </body>

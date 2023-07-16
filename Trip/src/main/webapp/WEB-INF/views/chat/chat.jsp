@@ -75,7 +75,7 @@
                 return;
             }
             //웹소켓 객체 만드는 코드
-            ws = new WebSocket('ws://' + serverIpAddress + ':8080/eecho.do');
+            ws = new WebSocket('ws://' + serverIpAddress + ':8080/echo.do');
             
             ws.onopen = function(event){
                 if(event.data === undefined){

@@ -100,9 +100,13 @@ function showWeather(i){
 		var originTemp = data.main.temp * 10;
         var changeTemp = Math.round(originTemp);
         var result = changeTemp / 10;
-        $('#test').append('<i class="' + weatherIcon[icon] +'" style="margin-left: 40px; margin-right: 10px;"></i> ');
-        $('#test').append('<span style="margin-right: 10px; padding-bottom: 12px;"><strong>' + region[i] + '</strong> </span>');
-        $('#test').append(`<span style="margin-right: 10px;">${result}°C </span>`);
+        $('#weather').append('<i class="' + weatherIcon[icon] +'" style="margin-left: 40px; margin-right: 10px;"></i> ');
+        $('#weather').append('<span style="margin-right: 10px; padding-bottom: 12px;"><strong>' + region[i] + '</strong> </span>');
+        $('#weather').append(`<span style="margin-right: 10px;">${result}°C </span>`);
+		if (i === 10) {
+			$("#weather").css("display","flex");
+			$("#weather-spinner").css("display","none");
+		}
     });
 }
 

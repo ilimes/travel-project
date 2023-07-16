@@ -18,7 +18,10 @@
 			<input type="button" class="btn btn-secondary" id="myWeatherButton" value="내 지역 날씨 보기" onclick="myRegionWeather();" style="margin-top: 40px;">
 			<div id="myWeatherDiv" style="text-align: center;"></div>
 			<div style="height: 40px;"></div>
-			<div id="test" style="display:flex; justify-content: space-between; flex-wrap: wrap; width: 100%; font-size: 20px; line-height: 1.8em;"></div>
+			<div id="weather-spinner" class="spinner-border" role="status">
+				<span class="visually-hidden">Loading...</span>
+			</div>
+			<div id="weather" style="display:none; justify-content: space-between; flex-wrap: wrap; width: 100%; font-size: 20px; line-height: 1.8em;"></div>
 			<div style="margin-top: 20px; border-bottom: 1px solid #cccccc"></div>
 			<div id="searchBox" style="margin-top: 40px; margin-bottom: 40px;">
 			    <input class="form-control" id="weatherSearchText" type="text" placeholder="도시 입력(영어로)" onkeydown="if (event.keyCode == 13) { searchWeather(); }" style="display: inline-block; width: 200px;">
