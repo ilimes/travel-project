@@ -1,4 +1,7 @@
 
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
 let weatherIcon = {
 	'01' : 'fas fa-sun',
 	'02' : 'fas fa-cloud-sun',
@@ -13,8 +16,16 @@ let weatherIcon = {
 
 const API_KEY = 'eddf9f32bdb74f026a2ee796f033b789';
 
+let isExist = false;
+
 function onGeoOk(position){
-	$('#myWeatherButton').remove();
+	// if (isExist) {
+	// 	alert('이미 날씨 정보가 존재합니다.');
+	// 	return;
+	// }
+	
+	// 날씨 존재하는 경우 새로 불러오기 위해 내용비우기
+	$('#myWeatherDiv').empty();
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
 
@@ -29,6 +40,7 @@ function onGeoOk(position){
         $('#myWeatherDiv').append(`<div class="myWeatherDivs" style="font-size: 60px;"><i class="` + weatherIcon[icon] + `"></i></div>`);
         $('#myWeatherDiv').append(`<div class="myWeatherDivs" style="font-weight: bold; font-size: 20px;">현재 위치(` + data.name + `)</div>`);
         $('#myWeatherDiv').append(`<div class="myWeatherDivs" style="font-size: 40px;">${result}°C</div>`);
+		// isExist = true;
     });
 };
 
@@ -100,7 +112,7 @@ function showWeather(i){
 		var originTemp = data.main.temp * 10;
         var changeTemp = Math.round(originTemp);
         var result = changeTemp / 10;
-        $('#weather').append('<i class="' + weatherIcon[icon] +'" style="margin-left: 40px; margin-right: 10px;"></i> ');
+        $('#weather').append('<i class="' + weatherIcon[icon] +'" style="margin-left: 40px; margin-right: 10px; margin-top: 7px;"></i> ');
         $('#weather').append('<span style="margin-right: 10px; padding-bottom: 12px;"><strong>' + region[i] + '</strong> </span>');
         $('#weather').append(`<span style="margin-right: 10px;">${result}°C </span>`);
 		if (i === 10) {

@@ -193,7 +193,8 @@
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${subMenuList }" var="subMenu">
-					<li><a href="/item/${subMenu.subMenuUri }?menuCode=${subMenu.menuCode }">${subMenu.subMenuName }</a></li>
+					<li><a href="/${subMenu.subMenuUri }?menuCode=${subMenu.menuCode }">${subMenu.subMenuName }</a></li>
+<%--				<li><a href="/item/${subMenu.subMenuUri }?menuCode=${subMenu.menuCode }">${subMenu.subMenuName }</a></li>--%>
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>

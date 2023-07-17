@@ -23,25 +23,25 @@
 </style>
 </head>
 <body>
-<div class="footDiv">
-	<div>
-		<div>
-			<div><strong>정보</strong></div>
-			<div>프로젝트명 : 한빛여행사</div>
-			<div>조장 : 이대규</div>
-			<div>조원 : 이주영, 안영빈</div>
-		</div>
-		<div>
-			<div><strong>이메일</strong></div>
-			<div>ilimes1307@naver.com</div>
-			<div>izosuql@naver.com</div>
-			<div>ayb0675@gmail.com</div>
-		</div>
-		<div>
-			<div><strong>주소</strong></div>
-			<div>(44677) 울산 남구 삼산로29번길 19-1</div>
-		</div>
-	</div>
-</div>
+<%--<div class="footDiv">--%>
+<%--	<div>--%>
+<%--		<div>--%>
+<%--			<div><strong>정보</strong></div>--%>
+<%--			<div>프로젝트명 : 한빛여행사</div>--%>
+<%--			<div>조장 : 이대규</div>--%>
+<%--			<div>조원 : 이주영, 안영빈</div>--%>
+<%--		</div>--%>
+<%--		<div>--%>
+<%--			<div><strong>이메일</strong></div>--%>
+<%--			<div>ilimes1307@gmail.com</div>--%>
+<%--			<div>izosuql@naver.com</div>--%>
+<%--			<div>ayb0675@gmail.com</div>--%>
+<%--		</div>--%>
+<%--		<div>--%>
+<%--			<div><strong>주소</strong></div>--%>
+<%--			<div>(44677) 울산 남구 삼산로29번길 19-1</div>--%>
+<%--		</div>--%>
+<%--	</div>--%>
+<%--</div>--%>
 </body>
 </html>

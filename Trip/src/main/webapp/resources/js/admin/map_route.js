@@ -147,7 +147,10 @@ function displayPlaces(places) {
                     if (status === kakao.maps.services.Status.OK) {
                         detailAddr = !!result[0].road_address ? result[0].road_address.address_name : result[0].address.address_name;
                         
-                        $('.testDiv').append('<span> ' + detailAddr +   title  + ' </span>');
+                        $('.testDiv').append('<div><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">\n' +
+                            '  <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>\n' +
+                            '  <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>\n' +
+                            '</svg> ' + detailAddr +   title  + ' </div>');
                         $('.testDiv').append('<input name="lng" type="hidden" value=" ' + marker.getPosition().getLng()  +'">' ); 
                         $('.testDiv').append('<input name="lat" type="hidden" value=" ' + marker.getPosition().getLat()  +'">' ); 
 }                                       
@@ -159,7 +162,10 @@ function displayPlaces(places) {
                     if (status === kakao.maps.services.Status.OK) {
                         detailAddr = !!result[0].road_address ? result[0].road_address.address_name : result[0].address.address_name;
                           
-                        $('.testDiv').append('<span> ' + detailAddr + title + ' </span>');          
+                        $('.testDiv').append('<div><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">\n' +
+                            '  <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>\n' +
+                            '  <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>\n' +
+                            '</svg> ' + detailAddr + title + ' </div>');
                         $('.testDiv').append('<input name="lng" type="hidden" value=" ' + marker.getPosition().getLng()  +'">' ); 
                         $('.testDiv').append('<input name="lat" type="hidden" value=" ' + marker.getPosition().getLat()  +'">' );          
                     }   
@@ -340,8 +346,8 @@ console.log(drawLineTest);
 
 	$('#testDiv').empty();
 	var geocoder = new kakao.maps.services.Geocoder();
-	
-	
+
+    let resultIdx = 1;
 	var nextIndex = 0;
 	for(var i = 0 ; i < lnglat1.length ; i ++){
 		var lng = lnglat1[i].lng;
@@ -356,16 +362,18 @@ console.log(drawLineTest);
         // 마커 이미지 
         });
 		position1 = positions[i];
-		
+
 		searchDetailAddrFromCoords(position1, function(result, status) {
         if (status === kakao.maps.services.Status.OK) {
             var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
             detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
             
 
-           $('#resultDiv').append('<div>' + result[0].address.address_name + '</div>');
+           $('#resultDiv').append('<div><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">\n' +
+               '  <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>\n' +
+               '</svg>' + resultIdx++ + '번째 👉 ' + result[0].address.address_name + '</div>');
            if(nextIndex++ != lnglat.length - 1){
-           $('#resultDiv').append('<svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="2 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/></svg>');
+           // $('#resultDiv').append('<svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="2 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/></svg>');
          }
         }
         else{
