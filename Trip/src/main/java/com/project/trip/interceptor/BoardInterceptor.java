@@ -127,6 +127,9 @@ public class BoardInterceptor extends HandlerInterceptorAdapter{
 		//선택된 메뉴코드, 서브 메뉴 코드 보내기
 		modelAndView.addObject("selectedMenu", menuCode);
 		modelAndView.addObject("selectedSubMenu", subMenuCode);
+
+		//서브 메뉴 리스트 보내기
+		modelAndView.addObject("subMenuList", adminService.selectSubMenuList(subMenuVO));
 	
 	}
 }

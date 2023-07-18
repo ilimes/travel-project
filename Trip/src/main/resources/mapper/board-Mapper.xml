@@ -46,7 +46,7 @@
 		        , SIDE_MENU_CODE
 		        , IS_MAIN
 		        , REPLY_CNT
-		        , ROWNUM AS ROW_NUM
+		        , ROW_NUMBER() OVER(ORDER BY BOARD_NUM) AS ROW_NUM
 		    FROM (
 		    	SELECT BOARD_NUM
 		            , TITLE
@@ -80,8 +80,8 @@
 					</when>
 				</choose>
 		        ORDER BY BOARD_NUM DESC
-		        )
-	        )
+		        ) AS A
+	        ) AS B
        WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
        <if test="sideMenuCode == 'SIDE_MENU_002'">
        AND WRITER = #{writer}
@@ -158,7 +158,7 @@
 			, IS_MAIN
 			</if>
 		) VALUES (
-			(SELECT NVL(MAX(BOARD_NUM), 0) + 1 FROM TRIP_BOARD)
+			(SELECT NVL(MAX(BOARD_NUM), 0) + 1 FROM TRIP_BOARD ALIAS_FOR_SUBQUERY)
 			, #{title}
 			, #{content}
 			, #{writer}
@@ -204,7 +204,7 @@
 			, WRITER
 			, BOARD_NUM
 		) VALUES (
-			(SELECT NVL(MAX(REPLY_NUM), 0) + 1 FROM BOARD_REPLY)
+			(SELECT NVL(MAX(REPLY_NUM), 0) + 1 FROM BOARD_REPLY ALIAS_FOR_SUBQUERY)
 			, #{content}
 			, #{writer}
 			, #{boardNum} 

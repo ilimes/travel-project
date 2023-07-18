@@ -23,9 +23,6 @@ function onGeoOk(position){
 	// 	alert('이미 날씨 정보가 존재합니다.');
 	// 	return;
 	// }
-	
-	// 날씨 존재하는 경우 새로 불러오기 위해 내용비우기
-	$('#myWeatherDiv').empty();
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
 
@@ -33,6 +30,7 @@ function onGeoOk(position){
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
     fetch(url).then((response) => response.json())
     .then((data) =>{
+		$('#my-weather-spinner').css("display", "none");
 		var icon = (data.weather[0].icon).substr(0,2);
         var originTemp = data.main.temp * 10;
         var changeTemp = Math.round(originTemp);
@@ -51,6 +49,9 @@ function onGeoError(){
 // 유저의 위치를 반환
 // 두가지 매개변수를 줘야함. 잘되었을때, 오류났을때
 function myRegionWeather(){
+	// 날씨 존재하는 경우 새로 불러오기 위해 내용비우기
+	$('#myWeatherDiv').empty();
+	$('#my-weather-spinner').css("display", "flex");
 	navigator.geolocation.getCurrentPosition(onGeoOk,onGeoError);
 }
 

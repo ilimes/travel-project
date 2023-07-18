@@ -140,7 +140,7 @@
 			, CONTENT
 			, ITEM_CODE
 		) VALUES (
-			(SELECT NVL(MAX(REVIEW_NUM), 0) + 1 FROM ITEM_REVIEW)
+			(SELECT NVL(MAX(REVIEW_NUM), 0) + 1 FROM ITEM_REVIEW ALIAS_FOR_SUBQUERY)
 			, #{itemRate}
 			, #{title}
 			, #{writer}
@@ -219,8 +219,8 @@
 					</when>
 				</choose>
 		        ORDER BY REVIEW_NUM DESC
-		        )
-	        )
+		        ) AS A
+	        ) AS B
        WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
 	</select>
 	
@@ -272,8 +272,8 @@
 		            	WHERE REVIEW_NUM = ITEM_REVIEW.REVIEW_NUM) AS REPLY_CNT
 		        FROM ITEM_REVIEW
 		        ORDER BY LIKES_CNT DESC
-		        )
-	        )
+		        ) AS A
+	        ) AS B
         WHERE ROW_NUM &lt;= #{rowNum}
 	</select>
 	
@@ -333,7 +333,7 @@
 	</update>
 
 	<delete id="deleteReview">
-		DELETE ITEM_REVIEW
+		DELETE FROM ITEM_REVIEW
 		WHERE REVIEW_NUM = #{reviewNum}
 	</delete>
 	
@@ -358,14 +358,14 @@
 			, MEM_ID
 		) VALUES (
 			(SELECT NVL(MAX(LIKE_NUM), 0) + 1
-         	FROM REVIEW_LIKE)
+         	FROM REVIEW_LIKE ALIAS_FOR_SUBQUERY)
          	, #{reviewNum}
          	, #{memId}
 		)
 	</insert>
 	
 	<delete id="deleteMyReviewLike">
-		DELETE REVIEW_LIKE
+		DELETE FROM REVIEW_LIKE
 		WHERE REVIEW_NUM = #{reviewNum}
 		AND MEM_ID = #{memId}
 	</delete>
@@ -377,7 +377,7 @@
 			, WRITER
 			, REVIEW_NUM
 		) VALUES (
-			(SELECT NVL(MAX(REPLY_NUM), 0) + 1 FROM REVIEW_REPLY)
+			(SELECT NVL(MAX(REPLY_NUM), 0) + 1 FROM REVIEW_REPLY ALIAS_FOR_SUBQUERY)
 			, #{content}
 			, #{writer}
 			, #{reviewNum} 
@@ -385,7 +385,7 @@
 	</insert>
 	
 	<delete id="deleteReviewReply">
-		DELETE REVIEW_REPLY
+		DELETE FROM REVIEW_REPLY
 		WHERE REPLY_NUM = #{replyNum}
 	</delete>
 	

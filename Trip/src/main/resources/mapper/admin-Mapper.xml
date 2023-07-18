@@ -87,6 +87,7 @@
 			, ADMIN_MENU_CODE
 		FROM TRIP_SIDE_MENU
 		WHERE 1 = 1
+		AND USE_YN = 'Y'
 		<if test="menuCode != null and !menuCode.equals('')">
 		AND MENU_CODE = #{menuCode}
 		</if>
@@ -105,15 +106,17 @@
 			, JOIN_DATE
             , ROW_NUM
 				FROM 
-		(SELECT MEM_ID
-					, MEM_NAME
-					, MEM_TELL
-					, MEM_BIRTHDAY
-					, TO_CHAR(JOIN_DATE, 'YYYY-MM-DD') AS JOIN_DATE
-		            , ROWNUM as ROW_NUM
-				FROM TRIP_MEMBER
-				ORDER BY JOIN_DATE DESC
-		        , ROW_NUM DESC)
+				(
+					SELECT MEM_ID
+						, MEM_NAME
+						, MEM_TELL
+						, MEM_BIRTHDAY
+						, DATE_FORMAT(JOIN_DATE, '%Y-%m-%d') AS JOIN_DATE
+						, ROW_NUMBER() OVER(ORDER BY MEM_ID) AS ROW_NUM
+					FROM TRIP_MEMBER
+					ORDER BY JOIN_DATE DESC
+					, ROW_NUM DESC
+				) AS A
 		 <!-- WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum} -->
 	</select>
 	
@@ -124,7 +127,7 @@
 			, MEM_BIRTHDAY
 			, MEM_GENDER
 			, MEM_TELL
-			, TO_CHAR(JOIN_DATE, 'YYYY"년 "MM"월 "DD"일"') AS JOIN_DATE
+		    , DATE_FORMAT(JOIN_DATE, '%Y년 %m월 %d일') AS JOIN_DATE
 			, MEM_ADDR
 			, MEM_ADDR_DETAIL
 			, MEM_POINT
@@ -147,7 +150,7 @@
 	
 	<!-- 회원 탈퇴 승인 (관리자) -->
 	<delete id="selectMemberSecession">
-		DELETE TRIP_MEMBER
+		DELETE FROM TRIP_MEMBER
 		WHERE MEM_ID IN 
 		<foreach item="memId" collection="memIdArr" open="(" close=")" separator=", ">#{memId}</foreach>
 	</delete>
@@ -179,14 +182,17 @@
 		    , TRIP_DATE
 		    , ITEM_PRICE
 		    , CATE_CODE
-		    , ROWNUM AS ROW_NUM
-    	FROM (SELECT ITEM_CODE
+		    , ROW_NUMBER() OVER(ORDER BY ITEM_CODE) AS ROW_NUM
+    	FROM (
+    		SELECT ITEM_CODE
 		    , ITEM_NAME
 		    , TRIP_DATE
 		    , ITEM_PRICE
 		    , CATE_CODE
 		    FROM TRIP_ITEM
-		    ORDER BY ITEM_CODE DESC))
+		    ORDER BY ITEM_CODE DESC
+		    ) AS A
+    	) AS B
 	WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
 	</select>
 	
@@ -206,18 +212,18 @@
 			, LATITUDE
 			, TRIP_AREA
 		) VALUES (
-			(SELECT 'PKG_'|| LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ITEM_CODE, 6, 3))), 0) + 1, 3, 0) FROM TRIP_ITEM)
+			(SELECT 'PKG_' + LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ITEM_CODE, 6, 3))), 0) + 1, 3, 0) FROM TRIP_ITEM ALIAS_FOR_SUBQUERY)
 			, #{itemName}
 			, #{itemPrice}
 			, #{itemDetail}
 			, #{startDate}
 			, #{endDate}
-			, TO_CHAR(TO_DATE(#{endDate}) - TO_DATE(#{startDate})) ||'박'|| TO_CHAR(TO_DATE(#{endDate}) - TO_DATE(#{startDate}) + 1) ||'일'
+			, CONCAT(CONCAT(DATE_SUB(#{endDate}, #{startDate}),'박 '),CONCAT(DATE_SUB(#{endDate}, #{startDate}) + 1),'일'))
 			, #{cateCode}
 			, #{tripAddr}
 			, #{longitude}
 			, #{latitude}
-			, (SELECT CATE_NAME FROM ITEM_CATE WHERE CATE_CODE = #{cateCode})
+			, (SELECT CATE_NAME FROM ITEM_CATE ALIAS_FOR_SUBQUERY WHERE CATE_CODE = #{cateCode})
 		)
 	</insert>
 	
@@ -247,13 +253,13 @@
 		, START_DATE = #{startDate}
 		, END_DATE = #{endDate}
 		, ITEM_DETAIL = #{itemDetail}
-		, TRIP_DATE = TO_CHAR(TO_DATE(#{endDate}) - TO_DATE(#{startDate})) ||'박'|| TO_CHAR(TO_DATE(#{endDate}) - TO_DATE(#{startDate}) + 1) ||'일'
+		, TRIP_DATE =  CONCAT(CONCAT(DATE_SUB(#{endDate}, #{startDate}),'박 '),CONCAT(DATE_SUB(#{endDate}, #{startDate}) + 1),'일'))
 		WHERE ITEM_CODE = #{itemCode}
 	</update>
 	
 	<!-- 다음에 올 아이템 코드 -->
 	<select id="selectNextItemCode" resultType="String">
-		SELECT 'PKG_'|| LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ITEM_CODE, 6, 3))), 0) + 1, 3, 0) FROM TRIP_ITEM
+		SELECT 'PKG_' + LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ITEM_CODE, 6, 3))), 0) + 1, 3, 0) FROM TRIP_ITEM
 	</select>
 	
 	<!-- 다음에 올 이미지 코드 -->
@@ -264,7 +270,7 @@
 	
 	<!-- 등록된 상품 중 선택 상품 삭제(관리자) -->
 	<delete id="deleteSelectedItem">
-		DELETE TRIP_ITEM
+		DELETE FROM TRIP_ITEM
 		WHERE ITEM_CODE IN 
 		<foreach item="itemCode" collection="itemCodeArr" open="(" close=")" separator=", ">#{itemCode}</foreach>
 	</delete>
@@ -278,7 +284,7 @@
 			, ATTACHED_IMG_NAME
 			, IMAGE_INDEX
 		) VALUES(
-			(SELECT 'IMG_'|| LPAD(NVL(MAX(TO_NUMBER(SUBSTR(IMG_CODE, 6, 3))), 0) + 1, 3, 0)
+			(SELECT 'IMG_' + LPAD(NVL(MAX(TO_NUMBER(SUBSTR(IMG_CODE, 6, 3))), 0) + 1, 3, 0)
 			FROM SLIDE_IMAGE)
 			, #{originImgName}
 			, #{attachedImgName}
@@ -310,7 +316,7 @@
 	
 	<!-- 패키지 예약 취소 -->
 	<delete id="deleteBook">
-		DELETE BOOK_ITEM
+		DELETE FROM BOOK_ITEM
 		WHERE BOOK_NUM = #{bookNum}
 	</delete>
 	
@@ -340,7 +346,7 @@
 			    , TRAVELERS
 			    , MEM_TELL
 			    , BOOK_DATE
-			    , ROWNUM AS ROW_NUM
+			    , ROW_NUMBER() OVER(ORDER BY BOOK_NUM) AS ROW_NUM
 		    FROM
 		    (SELECT BOOK_NUM
 		    	, MEM_ID
@@ -369,7 +375,7 @@
 		    , TITLE
 		    , (SELECT MEM_NAME FROM TRIP_MEMBER WHERE TRIP_MEMBER.MEM_ID = TRIP_BOARD.WRITER) AS WRITER
 		    , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE
-		    , ROWNUM AS ROW_NUM
+		    , ROW_NUMBER() OVER(ORDER BY BOARD_NUM) AS ROW_NUM
 		    FROM TRIP_BOARD
 		    WHERE SIDE_MENU_CODE = 'SIDE_MENU_002'
 		    ORDER BY BOARD_NUM DESC)
