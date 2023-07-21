@@ -89,7 +89,7 @@
 		AND CATE_CODE = #{cateCode}
 		</if>
 		<if test="itemName != null and !itemName.equals('')">
-		AND UPPER(ITEM_NAME) LIKE UPPER('%'||#{itemName}||'%')
+		AND UPPER(ITEM_NAME) LIKE UPPER(CONCAT('%',#{itemName},'%'))
 		</if>
 		<if test="startDate != null and !startDate.equals('')">
 		AND START_DATE >= #{startDate}
@@ -202,20 +202,20 @@
 		        WHERE 1 = 1
 		        <choose>
 					<when test="title != null and !title.equals('') and content != null and !content.equals('')">
-						AND UPPER(CONTENT) LIKE UPPER('%'||#{content}||'%')
-						OR UPPER(TITLE) LIKE UPPER('%'||#{title}||'%')
+						AND UPPER(CONTENT) LIKE UPPER(CONCAT('%',#{content},'%'))
+						OR UPPER(TITLE) LIKE UPPER(CONCAT('%',#{title},'%'))
 					</when>
 					<when test="title != null and !title.equals('')">
-						AND UPPER(TITLE) LIKE UPPER('%'||#{title}||'%')
+						AND UPPER(TITLE) LIKE UPPER('CONCAT('%',#{title},'%'))
 					</when>
 					<when test="content != null and !content.equals('')">
-						AND UPPER(CONTENT) LIKE UPPER('%'||#{content}||'%')
+						AND UPPER(CONTENT) LIKE UPPER(CONCAT('%',#{content},'%'))
 					</when>
 					<when test="writer != null and !writer.equals('')">
-						AND UPPER(WRITER) LIKE UPPER('%'||#{writer}||'%')
+						AND UPPER(WRITER) LIKE UPPER(CONCAT('%',#{writer},'%'))
 						OR UPPER((SELECT MEM_NAME
 									FROM TRIP_MEMBER
-									WHERE MEM_ID = ITEM_REVIEW.WRITER)) LIKE UPPER('%'||#{writer}||'%')
+									WHERE MEM_ID = ITEM_REVIEW.WRITER)) LIKE UPPER(CONCAT('%',#{writer},'%'))
 					</when>
 				</choose>
 		        ORDER BY REVIEW_NUM DESC
@@ -308,20 +308,20 @@
 		WHERE 1 = 1
 		<choose>
 			<when test="title != null and !title.equals('') and content != null and !content.equals('')">
-				AND UPPER(CONTENT) LIKE UPPER('%'||#{content}||'%')
-				OR UPPER(TITLE) LIKE UPPER('%'||#{title}||'%')
+				AND UPPER(CONTENT) LIKE UPPER(CONCAT('%',#{content},'%'))
+				OR UPPER(TITLE) LIKE UPPER(CONCAT('%',#{title},'%'))
 			</when>
 			<when test="title != null and !title.equals('')">
-				AND UPPER(TITLE) LIKE UPPER('%'||#{title}||'%')
+				AND UPPER(TITLE) LIKE UPPER(CONCAT('%',#{title},'%'))
 			</when>
 			<when test="content != null and !content.equals('')">
-				AND UPPER(CONTENT) LIKE UPPER('%'||#{content}||'%')
+				AND UPPER(CONTENT) LIKE UPPER(CONCAT('%',#{content},'%'))
 			</when>
 			<when test="writer != null and !writer.equals('')">
-				AND UPPER(WRITER) LIKE UPPER('%'||#{writer}||'%')
+				AND UPPER(WRITER) LIKE UPPER(CONCAT('%',#{writer},'%'))
 				OR UPPER((SELECT MEM_NAME
 							FROM TRIP_MEMBER
-							WHERE MEM_ID = ITEM_REVIEW.WRITER)) LIKE UPPER('%'||#{writer}||'%')
+							WHERE MEM_ID = ITEM_REVIEW.WRITER)) LIKE UPPER(CONCAT('%',#{writer},'%'))
 			</when>
 		</choose>
 	</select>

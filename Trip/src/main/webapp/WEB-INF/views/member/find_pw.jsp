@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="loginForm">
-	<h3>아이디/비밀번호를 잊어버리셨나요?</h3>
+	<h3>비밀번호를 잊어버리셨나요?</h3>
 	<div class="isMember">
 		<div class="left" onclick="location.href='/member/findIdForm';">아이디 찾기</div>
 		<div class="right" >비밀번호 찾기</div>
@@ -17,7 +17,7 @@
 	<form action="/member/findPw" method="post" id="findPwForm" onsubmit="return false;">
 		<input type="hidden" name="memTell" id="memTell">
 		<div class="col-12 removeParent1">
-			<div class="col-12">
+			<div class="col-12" style="margin-bottom: 10px">
 				   	  <div><label for="inputEmail4" class="form-label">이름</label></div>
 				     <div>
 					      <input type="text" class="form-control" name="memName" id="memName" placeholder="이름을 입력해 주세요." style="display:inline-block; width:335px;">
@@ -30,11 +30,11 @@
 				     	  </span>
 					</div>
 		   </div>
-		   <div class="col-12" >
+		   <div class="col-12" style="margin-bottom: 10px">
 				<label for="inputEmail4" class="form-label">생년월일</label> 
 				<input type="text" class="form-control" name="memBirthday" id="memBirthday" placeholder="생년월일을 입력해 주세요.(예:19900101)">
 			</div>
-			<div class="col-12">
+			<div class="col-12" style="margin-bottom: 10px">
 			   	  <div><label for="inputState" class="form-label">연락처</label></div>
 			   	  <div>
 				      <select id="inputState" class="form-select" name="memTells" style="display:inline-block; width:131px;">
@@ -50,7 +50,6 @@
 				<div style="display: inline-block;">
 					<input type="text" class="form-control" name="memId" id="memId" placeholder="이메일을 입력해 주세요." style="width: 335px;">
 				</div>
-				
 				<div style="display: inline-block; float: right;">
 		       		<button type="submit" class="btn btn-secondary" id="sendNum"  style="width: 155px; position: relative;">인증번호 요청하기</button>
 				</div>

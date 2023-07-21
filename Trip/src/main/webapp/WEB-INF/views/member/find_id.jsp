@@ -9,17 +9,17 @@
 </head>
 <body>
 <div class="loginForm">
-	<h3>아이디/비밀번호를 잊어버리셨나요?</h3>
+	<h3>아이디를 잊어버리셨나요?</h3>
 	<div class="isMember">
 		<div class="left">아이디 찾기</div>
 		<div class="right" onclick="location.href='/member/findPwForm';">비밀번호 찾기</div>
 	</div>
 	<form action="/member/findId" method="post" id="findIdForm">
-		<div class="col-12">
+		<div class="col-12" style="margin-bottom: 10px">
 		   	 <div><label for="inputEmail4" class="form-label">이름</label></div>
 		     <div>
-			      <input type="text" class="form-control" name="memName" id="memName" placeholder="이름을 입력해 주세요." style="display:inline-block; width:335px;">
-			      <label for="inputCity" class="form-label">&nbsp;</label> 
+			      <input type="text" class="form-control" name="memName" id="memName" placeholder="이름을 입력해 주세요." style="display:inline-block; width:335px;	">
+			      <label for="inputCity" class="form-label">&nbsp;</label>
 			      <span class="btn-group" role="group" aria-label="Basic radio toggle button group" style="width: 150px;">
 					  <input type="radio" class="btn-check" name="memGender" id="btnradio1" autocomplete="off" value="남" checked>
 					  <label class="btn btn-outline-primary" for="btnradio1" style="padding: 0.275rem .75rem 0 0.85rem;">남</label>
@@ -28,7 +28,7 @@
 		     	  </span>
 			</div>
 	   </div>
-		<div class="col-12" >
+		<div class="col-12" style="margin-bottom: 10px">
 			<label for="inputEmail4" class="form-label">생년월일</label> 
 			<input type="text" class="form-control" name="memBirthday" id="memBirthday" placeholder="생년월일을 입력해 주세요.(예:19900101)">
 		</div>

@@ -64,7 +64,7 @@ public class ItemController {
 	@GetMapping("/mainPage")
 	public String mainPage(Model model, ReviewVO reviewVO) {
 		reviewVO.setRowNum(5);
-//		model.addAttribute("reviewList", itemService.selectBestReview(reviewVO));
+		model.addAttribute("reviewList", itemService.selectBestReview(reviewVO));
 		
 		return "template/main";
 	}

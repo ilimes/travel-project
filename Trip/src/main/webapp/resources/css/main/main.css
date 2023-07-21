@@ -4,6 +4,7 @@
 	font-size: 14px;
 	height: 45px;
 	padding: 0;
+    font-weight: bold;
 }
 .col-md-4 > div > div:first-child{
 	margin-bottom: 1px;

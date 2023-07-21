@@ -63,20 +63,20 @@
 		        WHERE SIDE_MENU_CODE = #{sideMenuCode}
 		        <choose>
 					<when test="title != null and !title.equals('') and content != null and !content.equals('')">
-						AND UPPER(CONTENT) LIKE UPPER('%'||#{content}||'%')
-						OR UPPER(TITLE) LIKE UPPER('%'||#{title}||'%')
+						AND UPPER(CONTENT) LIKE UPPER(CONCAT('%',#{content},'%'))
+						OR UPPER(TITLE) LIKE UPPER(CONCAT('%',#{title},'%'))
 					</when>
 					<when test="title != null and !title.equals('')">
-						AND UPPER(TITLE) LIKE UPPER('%'||#{title}||'%')
+						AND UPPER(TITLE) LIKE UPPER(CONCAT('%',#{title},'%'))
 					</when>
 					<when test="content != null and !content.equals('')">
-						AND UPPER(CONTENT) LIKE UPPER('%'||#{content}||'%')
+						AND UPPER(CONTENT) LIKE UPPER(CONCAT('%',#{content},'%'))
 					</when>
 					<when test="writer != null and !writer.equals('')">
-						AND (UPPER(WRITER) LIKE UPPER('%'||#{writer}||'%')
+						AND (UPPER(WRITER) LIKE UPPER(CONCAT('%',#{writer},'%'))
 						OR UPPER((SELECT MEM_NAME
 									FROM TRIP_MEMBER
-									WHERE MEM_ID = TRIP_BOARD.WRITER)) LIKE UPPER('%'||#{writer}||'%'))
+									WHERE MEM_ID = TRIP_BOARD.WRITER)) LIKE UPPER(CONCAT('%',#{writer},'%')))
 					</when>
 				</choose>
 		        ORDER BY BOARD_NUM DESC
@@ -125,20 +125,20 @@
 		<if test="sideMenuCode == 'SIDE_MENU_001'">
 			<choose>
 				<when test="title != null and !title.equals('') and content != null and !content.equals('')">
-					AND UPPER(CONTENT) LIKE UPPER('%'||#{content}||'%')
-					OR UPPER(TITLE) LIKE UPPER('%'||#{title}||'%')
+					AND UPPER(CONTENT) LIKE UPPER(CONCAT('%',#{content},'%'))
+					OR UPPER(TITLE) LIKE UPPER(CONCAT('%',#{title},'%'))
 				</when>
 				<when test="title != null and !title.equals('')">
-					AND UPPER(TITLE) LIKE UPPER('%'||#{title}||'%')
+					AND UPPER(TITLE) LIKE UPPER(CONCAT('%',#{title},'%'))
 				</when>
 				<when test="content != null and !content.equals('')">
-					AND UPPER(CONTENT) LIKE UPPER('%'||#{content}||'%')
+					AND UPPER(CONTENT) LIKE UPPER(CONCAT('%',#{content},'%'))
 				</when>
 				<when test="writer != null and !writer.equals('')">
-					AND (UPPER(WRITER) LIKE UPPER('%'||#{writer}||'%')
+					AND (UPPER(WRITER) LIKE UPPER(CONCAT('%',#{writer},'%'))
 					OR UPPER((SELECT MEM_NAME
 								FROM TRIP_MEMBER
-								WHERE MEM_ID = TRIP_BOARD.WRITER)) LIKE UPPER('%'||#{writer}||'%'))
+								WHERE MEM_ID = TRIP_BOARD.WRITER)) LIKE UPPER(CONCAT('%',#{writer},'%')))
 				</when>
 			</choose>
 		</if>
