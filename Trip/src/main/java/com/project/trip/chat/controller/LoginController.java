@@ -59,8 +59,11 @@ public class LoginController {
 		}
 
     	//서버 아이피 주소 얻기(IPv4)
-    	model.addAttribute("serverIpAddress", hostAddr);
-    	
+		//model.addAttribute("serverIpAddress", hostAddr);
+
+		//각 서버 아이피 불러오는 대신 OCI IP로 설정
+		model.addAttribute("serverIpAddress", "146.56.144.64");
+
 		return "chat/chat";
 	}
 	
