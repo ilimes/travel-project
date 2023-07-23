@@ -24,7 +24,7 @@ thead tr {
     position: relative;
     padding: 1em 1.5em;
     margin: 1.6em auto;
-    background: #DDDDDD;
+    background: #f1f1f1;
 }
 .intrinsic-container:before {
     content: "";

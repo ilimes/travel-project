@@ -9,10 +9,10 @@
 </head>
 <body>
 <div class="loginForm">
-	<h3>회원가입을 위해 본인인증을 해 주세요.</h3>
+	<h3 style="margin-bottom: 20px">회원가입을 위해 본인인증을 해 주세요.</h3>
 	<form action="" method="post" id="certiJoinForm" onsubmit="return false;">
 		<div class="col-12 removeParent">
-			<div class="col-12">
+			<div class="col-12" style="margin-bottom: 10px">
 				   	  <div><label for="inputEmail4" class="form-label">이름</label></div>
 				     <div>
 					      <input type="text" class="form-control" name="memName" id="memName" placeholder="이름을 입력해주세요." style="display:inline-block; width:335px;">
@@ -25,17 +25,17 @@
 				     	  </span>
 					</div>
 		   </div>
-		   <div class="col-12" >
+		   <div class="col-12" style="margin-bottom: 10px">
 				<label for="inputEmail4" class="form-label">생년월일</label> 
 				<input type="text" class="form-control" name="memBirthday" id="memBirthday" placeholder="생년월일을 입력해주세요.(예:19900101)">
 			</div>
-			<div class="col-12">
+			<div class="col-12" style="margin-bottom: 10px">
 				<div style="display: inline-block;"><label for="inputEmail4" class="form-label">이메일(아이디)</label></div> 
 				<div>
-				      <input type="text" class="form-control" name="memId" id="memId" style="display:inline-block; width:184px;" onkeyup="idChkReset();" placeholder="이메일을 입력해주세요.">
+				      <input type="text" class="form-control" name="memId" id="memId" style="display:inline-block; width:155px;" onkeyup="idChkReset();" placeholder="이메일(아이디)">
 				       <span style="margin: 0 10px 0 10px;">@</span>
-				      	<input type="text" class="form-control" name="memEmail" id="memEmail" readonly value="naver.com" style="display:inline-block; width:115px; margin-right: 15px;" onkeyup="idChkReset();">
-				      <select style="width:130px; height: 36px; margin-right:10px; " name="selectEmail" id="selectEmail" onchange="idChkReset();">
+				      	<input type="text" class="form-control" name="memEmail" id="memEmail" readonly value="naver.com" style="display:inline-block; width:139px;" onkeyup="idChkReset();">
+				      <select style="width:155px; height: 36px; float: right;" name="selectEmail" id="selectEmail" onchange="idChkReset();">
 				       	<option value="naver.com" selected>naver.com</option>
 				       	<option value="hanmail.net">hanmail.net</option>
 				       	<option value="nate.com">nate.com</option>

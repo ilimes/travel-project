@@ -51,7 +51,16 @@
 	</div>
 	<c:if test="${sideMenuVO.sideMenuCode eq 'SIDE_MENU_001' or sideMenuVO.sideMenuCode eq 'SIDE_MENU_002' }">
 		<div class="btnDiv">
-			<div class="btns" id="back" style="width: 130px;" onclick="history.back();">뒤로가기</div>
+			<c:choose>
+				<c:when test="${sideMenuVO.sideMenuCode eq 'SIDE_MENU_001' }">
+					<div class="btns" id="back" style="width: 130px;" onclick="location.href='/board/notice?menuCode=SERVICE&sideMenuCode=SIDE_MENU_001';">목록으로</div>
+				</c:when>
+				<c:otherwise>
+					<c:if test="${sideMenuVO.sideMenuCode eq 'SIDE_MENU_002' }">
+						<div class="btns" id="back" style="width: 130px;" onclick="location.href='/board/question?menuCode=SERVICE&sideMenuCode=SIDE_MENU_002';">목록으로</div>
+					</c:if>
+				</c:otherwise>
+			</c:choose>
 			<c:choose>
 				<c:when test="${sessionScope.loginInfo.isAdmin eq 'Y' }">
 					<div class="btns" id="modify" style="width: 130px;" onclick="modifyBoardForm('${boardInfo.isMain}');">수정</div>

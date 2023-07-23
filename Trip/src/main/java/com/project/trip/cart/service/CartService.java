@@ -11,10 +11,14 @@ public interface CartService {
 	int insertCart(CartVO cartVO);
 	
 	List<CartViewVO> selectCartList(String memId);
+
+	List<CartViewVO> selectExistCart(CartVO cartVO);
 	
 	int deleteCart(CartVO cartVO);
-	
+
+	int updateCart(CartVO cartVO);
+
 	int deleteCarts(CartVO cartVO);
-	
+
 	int updateItemCnt(CartVO cartVO);
 }

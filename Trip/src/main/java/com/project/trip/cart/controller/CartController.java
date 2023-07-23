@@ -4,14 +4,15 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import javax.smartcardio.Card;
 
+import com.google.gson.Gson;
+import com.project.trip.result.ListResultVO;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.project.trip.cart.service.CartService;
 import com.project.trip.cart.vo.CartVO;
@@ -52,6 +53,28 @@ public class CartController {
 		
 		return "cart/cart_list";
 	}
+
+	@ResponseBody
+	@PostMapping("/selectExistCart")
+	public String selectExistCart(HttpSession session, Model model, CartVO cartVO) {
+		Gson gson = new Gson();
+		JSONObject jsonObject = new JSONObject();
+		//memId 받아오기 - 세션에서
+		String loginId = ((MemberVO)(session.getAttribute("loginInfo"))).getMemId();
+		//memId 채워주기
+		cartVO.setMemId(loginId);
+
+		List<CartViewVO> cartList = cartService.selectExistCart(cartVO);
+//		jsonObject.put("data", cartList);
+//		String jsonCartList = gson.toJson(jsonObject);
+
+		ListResultVO listResult = new ListResultVO();
+		listResult.setSuccess(true);
+		listResult.setData(cartList);
+		String jsonCartList = gson.toJson(listResult);
+
+		return jsonCartList;
+	}
 	
 	//장바구니에 넣기
 	@ResponseBody
@@ -65,6 +88,21 @@ public class CartController {
 		//장바구니에 넣는 코드 실행
 		String result = Integer.toString(cartService.insertCart(cartVO));
 		
+		return result;
+	}
+
+	//장바구니에 넣기
+	@ResponseBody
+	@PostMapping("/updateCart")
+	public String updateCart(HttpSession session, CartVO cartVO) {
+		//memId 받아오기 - 세션에서
+		String loginId = ((MemberVO)(session.getAttribute("loginInfo"))).getMemId();
+		//memId 채워주기
+		cartVO.setMemId(loginId);
+
+		//장바구니에 넣는 코드 실행
+		String result = Integer.toString(cartService.updateCart(cartVO));
+
 		return result;
 	}
 	

@@ -1,10 +1,9 @@
 package com.project.trip.chat.controller;
 
-import java.net.Inet4Address;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
+import java.net.*;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,9 +37,29 @@ public class LoginController {
 		
     	HttpSession session = request.getSession();
     	session.setAttribute("id", id);
-    	
+
+		String hostAddr = "";
+
+		try {
+			Enumeration<NetworkInterface> nienum = NetworkInterface.getNetworkInterfaces();
+			while (nienum.hasMoreElements()) {
+				NetworkInterface ni = nienum.nextElement();
+				Enumeration<InetAddress> kk= ni.getInetAddresses();
+				while (kk.hasMoreElements()) {
+					InetAddress inetAddress = kk.nextElement();
+					if (!inetAddress.isLoopbackAddress() &&
+							!inetAddress.isLinkLocalAddress() &&
+							inetAddress.isSiteLocalAddress()) {
+						hostAddr = inetAddress.getHostAddress().toString();
+					}
+				}
+			}
+		} catch (SocketException e) {
+			e.printStackTrace();
+		}
+
     	//서버 아이피 주소 얻기(IPv4)
-    	model.addAttribute("serverIpAddress", Inet4Address.getLocalHost().getHostAddress());
+    	model.addAttribute("serverIpAddress", hostAddr);
     	
 		return "chat/chat";
 	}

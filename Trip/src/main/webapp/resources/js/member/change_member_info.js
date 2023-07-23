@@ -412,7 +412,7 @@ $('#deactivateMemberPwForm').validate({
 			    data:{'memId':memId}, //필요한 데이터 '데이터이름':값
 			    success: function(result) {
 			      //ajax 실행 성공 후 실행할 코드 작성
-					document.getElementById('modalBody').innerText = '회원탈퇴를 완료되었습니다.';
+					document.getElementById('modalBody').innerText = '회원탈퇴가 완료되었습니다.';
 					document.getElementById('btnOk').setAttribute('onClick', "location.href='/item/mainPage';");
 					document.getElementById('btnOk').value = '메인';
 			      	$('#alertModal').modal('show');

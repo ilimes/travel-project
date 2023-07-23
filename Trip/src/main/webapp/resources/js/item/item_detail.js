@@ -96,25 +96,71 @@ function insertCart(){
 function insertCartGo(){
 	var itemCode = document.getElementById('itemCode').value;
 	var travelers = document.getElementById('travelers').value;
-	
-	$.ajax({
-    url: '/cart/insertCart', //요청경로
-    type: 'post',
-    data:{'itemCode':itemCode, 'travelers':travelers}, //필요한 데이터 '데이터이름':값
-    success: function(result) {
-      //ajax 실행 성공 후 실행할 코드 작성
-      var result = confirm('여행 상품을 장바구니에 등록했습니다. \n장바구니로 이동하시겠습니까?');
-      
-      if(result){
-		location.href='/cart/cartList';
-	  }
-      
-    },
-    error: function(){
-      //ajax 실행 실패 시 실행되는 구간
-       alert('실패');
-    }
-	});
+
+	const getData = () => {
+		let result
+		$.ajax({
+			url: '/cart/selectExistCart', //요청경로
+			type: 'post',
+			data:{'itemCode':itemCode, 'travelers':travelers}, //필요한 데이터 '데이터이름':값
+			success: function(res) {
+				const isExistCart = JSON.parse(res)?.data?.[0];
+				if (isExistCart) {
+					updateCart();
+				} else {
+					insertCart();
+				}
+			},
+			error: function(){
+				//ajax 실행 실패 시 실행되는 구간
+				alert('실패');
+			}
+		});
+	}
+
+	const insertCart = () => {
+		$.ajax({
+		url: '/cart/insertCart', //요청경로
+		type: 'post',
+		data:{'itemCode':itemCode, 'travelers':travelers}, //필요한 데이터 '데이터이름':값
+		success: function(res) {
+		  //ajax 실행 성공 후 실행할 코드 작성
+		  const result = confirm('여행 상품을 장바구니에 등록했습니다. \n장바구니로 이동하시겠습니까?');
+
+		  if (result){
+			location.href='/cart/cartList';
+		  }
+
+		},
+		error: function(){
+		  //ajax 실행 실패 시 실행되는 구간
+		   alert('실패');
+		}
+		});
+	}
+
+	const updateCart = () => {
+		$.ajax({
+			url: '/cart/updateCart', //요청경로
+			type: 'post',
+			data:{'itemCode':itemCode, 'travelers':travelers}, //필요한 데이터 '데이터이름':값
+			success: function(res) {
+				//ajax 실행 성공 후 실행할 코드 작성
+				const result = confirm('이미 존재하는 상품이 있어 추가로 등록하였습니다. \n장바구니로 이동하시겠습니까?');
+
+				if (result){
+					location.href='/cart/cartList';
+				}
+
+			},
+			error: function(){
+				//ajax 실행 실패 시 실행되는 구간
+				alert('실패');
+			}
+		});
+	}
+
+	getData();
 }
 
 

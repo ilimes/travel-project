@@ -21,8 +21,18 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
+	public int updateCart(CartVO cartVO) {
+		return sqlSession.insert("cartMapper.updateCart", cartVO);
+	}
+
+	@Override
 	public List<CartViewVO> selectCartList(String memId) {
 		return sqlSession.selectList("cartMapper.selectCartList", memId);
+	}
+
+	@Override
+	public List<CartViewVO> selectExistCart(CartVO cartVO) {
+		return sqlSession.selectList("cartMapper.selectExistCart", cartVO);
 	}
 
 	@Override
