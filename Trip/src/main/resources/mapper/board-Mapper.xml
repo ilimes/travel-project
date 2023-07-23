@@ -52,7 +52,7 @@
 		            , TITLE
 		           	<!--  , CONTENT -->
 		            , WRITER
-		            , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE
+		            , DATE_FORMAT(CREATE_DATE, '%Y-%m-%d') AS CREATE_DATE
 		            , READ_CNT
 		            , SIDE_MENU_CODE
 		            , IS_MAIN
@@ -93,7 +93,7 @@
             , TITLE
             <!-- , CONTENT -->
             , WRITER
-            , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE
+            , DATE_FORMAT(CREATE_DATE, '%Y-%m-%d') AS CREATE_DATE
             , READ_CNT
             , SIDE_MENU_CODE
             , IS_MAIN
@@ -110,7 +110,7 @@
 			, (SELECT MEM_NAME
 				FROM TRIP_MEMBER
 				WHERE MEM_ID = TRIP_BOARD.WRITER) AS MEM_NAME
-			, TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE
+			, DATE_FORMAT(CREATE_DATE, '%Y-%m-%d') AS CREATE_DATE
 			, READ_CNT
 			, SIDE_MENU_CODE
 			, IS_MAIN
@@ -158,7 +158,7 @@
 			, IS_MAIN
 			</if>
 		) VALUES (
-			(SELECT NVL(MAX(BOARD_NUM), 0) + 1 FROM TRIP_BOARD ALIAS_FOR_SUBQUERY)
+			(SELECT IFNULL(MAX(BOARD_NUM), 0) + 1 FROM TRIP_BOARD ALIAS_FOR_SUBQUERY)
 			, #{title}
 			, #{content}
 			, #{writer}
@@ -204,7 +204,7 @@
 			, WRITER
 			, BOARD_NUM
 		) VALUES (
-			(SELECT NVL(MAX(REPLY_NUM), 0) + 1 FROM BOARD_REPLY ALIAS_FOR_SUBQUERY)
+			(SELECT IFNULL(MAX(REPLY_NUM), 0) + 1 FROM BOARD_REPLY ALIAS_FOR_SUBQUERY)
 			, #{content}
 			, #{writer}
 			, #{boardNum} 
@@ -212,14 +212,14 @@
 	</insert>
 	
 	<delete id="deleteBoardReply">
-		DELETE BOARD_REPLY
+		DELETE FROM BOARD_REPLY
 		WHERE REPLY_NUM = #{replyNum}
 	</delete>
 	
 	<select id="selectReplyList" resultMap="reply">
 		SELECT REPLY_NUM
 			, CONTENT
-			, TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE
+			, DATE_FORMAT(CREATE_DATE, '%Y-%m-%d') AS CREATE_DATE
 			, BOARD_NUM
 			, WRITER
 			, (SELECT MEM_NAME

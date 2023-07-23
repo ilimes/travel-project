@@ -76,16 +76,41 @@ thead tr {
 			    	<div class="col-3">
 						<div><label class="form-label">성별</label></div>
 						<div>
-							<label>${memInfo.memGender }</label>
+						<c:choose>
+							<c:when test="${empty memInfo.memGender }">
+								<label>-</label>
+							</c:when>
+							<c:otherwise>
+								<label>${memInfo.memGender }</label>
+							</c:otherwise>
+						</c:choose>
 						</div>
 			     	</div>
 					<div class="col-3">
 					   	<div><label for="addr" class="form-label">우편번호</label></div>
-					   	<div><label>${loginInfo.memZipcode }</label></div>
+						<div>
+							<c:choose>
+								<c:when test="${empty memInfo.memZipcode }">
+									<label>-</label>
+								</c:when>
+								<c:otherwise>
+									<label>${memInfo.memZipcode }</label>
+								</c:otherwise>
+							</c:choose>
+						</div>
 					</div>
 					<div class="col-6">
 						<div><label for="addr" class="form-label">주소</label></div>
-						<div><label>${loginInfo.memAddr} ${loginInfo.memAddrDetail}</label></div>
+						<div>
+							<c:choose>
+								<c:when test="${empty loginInfo.memAddr && empty loginInfo.memAddrDetail}">
+									<label>-</label>
+								</c:when>
+								<c:otherwise>
+									<label>${loginInfo.memAddr} ${loginInfo.memAddrDetail}</label>
+								</c:otherwise>
+							</c:choose>
+						</div>
 					</div>
 				</div>
 				<div style="height: 12px;"></div>
