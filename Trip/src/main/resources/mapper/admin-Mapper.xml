@@ -337,28 +337,30 @@
 		    , MEM_TELL
 		    , BOOK_DATE
 		    , ROW_NUM
-            FROM(
-			SELECT BOOK_NUM
-				, MEM_ID
-			    , ITEM_NAME
-			    , BUY_PRICE
-			    , MEM_NAME
-			    , TRAVELERS
-			    , MEM_TELL
-			    , BOOK_DATE
-			    , ROW_NUMBER() OVER(ORDER BY BOOK_NUM) AS ROW_NUM
-		    FROM
-		    (SELECT BOOK_NUM
-		    	, MEM_ID
-		        , ITEM_NAME
-		        , BUY_PRICE
-		        , MEM_NAME
-		        , TRAVELERS
-		        , MEM_TELL
-		        , BOOK_DATE
-			    FROM BOOK_VIEW
-		        ORDER BY BOOK_DATE DESC
-		        ))
+            FROM
+                (
+				SELECT BOOK_NUM
+					, MEM_ID
+					, ITEM_NAME
+					, BUY_PRICE
+					, MEM_NAME
+					, TRAVELERS
+					, MEM_TELL
+					, BOOK_DATE
+					, ROW_NUMBER() OVER(ORDER BY BOOK_NUM) AS ROW_NUM
+				FROM
+				(SELECT BOOK_NUM
+					, MEM_ID
+					, ITEM_NAME
+					, BUY_PRICE
+					, MEM_NAME
+					, TRAVELERS
+					, MEM_TELL
+					, BOOK_DATE
+					FROM BOOK_VIEW
+					ORDER BY BOOK_DATE DESC
+					) AS A
+				) AS B
 		WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
 		ORDER BY ROW_NUM
 	</select>
