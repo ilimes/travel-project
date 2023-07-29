@@ -46,7 +46,7 @@
 		        , SIDE_MENU_CODE
 		        , IS_MAIN
 		        , REPLY_CNT
-		        , ROW_NUMBER() OVER(ORDER BY BOARD_NUM) AS ROW_NUM
+		        , ROW_NUMBER() OVER(ORDER BY BOARD_NUM DESC) AS ROW_NUM
 		    FROM (
 		    	SELECT BOARD_NUM
 		            , TITLE
@@ -79,7 +79,7 @@
 									WHERE MEM_ID = TRIP_BOARD.WRITER)) LIKE UPPER(CONCAT('%',#{writer},'%')))
 					</when>
 				</choose>
-		        ORDER BY CREATE_DATE DESC
+-- 				ORDER BY BOARD_NUM DESC
 		        ) AS A
 	        ) AS B
        WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}

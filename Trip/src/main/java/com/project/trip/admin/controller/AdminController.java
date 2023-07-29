@@ -110,7 +110,7 @@ public class AdminController {
 	
 	//상품등록 페이지에서 등록버튼 클릭
 	@PostMapping("/regItem")
-	public String regItem(ItemVO itemVO,  MultipartHttpServletRequest multi, Model model) {
+	public String regItem(ItemVO itemVO, MultipartHttpServletRequest multi, Model model) {
 
 		//이미지 정보를 세팅할 공간(List) 생성
 		List<ImageVO> imgList = new ArrayList<ImageVO>();
