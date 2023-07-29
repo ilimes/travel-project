@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="loginForm">
-	<h1>환영합니다!</h1>
+	<h3>환영합니다!</h3>
 	<h5>
 		${joinInfo.memName }님의 회원가입을 축하드립니다.<br>
 		가입하신 아이디는 ${joinInfo.memId}입니다.

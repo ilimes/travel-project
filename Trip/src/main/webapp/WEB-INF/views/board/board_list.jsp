@@ -31,7 +31,7 @@
 			</thead>
 			<tbody>
 				<c:forEach items="${topBoardList }" var="topBoard">
-						<c:if test="${topBoard.isMain eq 'Y' }"일>
+						<c:if test="${topBoard.isMain eq 'Y' }">
 							<tr class="noticeTr">
 								<td>[공지]</td>
 								<td><a href="/board/boardDetail?menuCode=${boardVO.menuCode }&sideMenuCode=${boardVO.sideMenuCode }&boardNum=${topBoard.boardNum }">${topBoard.title }</a></td>

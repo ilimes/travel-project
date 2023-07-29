@@ -51,3 +51,14 @@ form{
 	font-size: 15px;
 	/*font-weight: bold;*/
 }
+
+/* 유효성 검사 */
+#memTell1-error {
+	float: left;
+	padding-left: 140px;
+}
+
+#memTell2-error {
+	float: right;
+	padding-right: 50px;
+}
