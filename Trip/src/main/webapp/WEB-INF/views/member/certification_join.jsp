@@ -1,4 +1,4 @@
-		<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -7,6 +7,22 @@
 <title>Insert title here</title>
 <link href="/resources/css/member/login.css" rel="stylesheet">
 </head>
+<style>
+	.btn-check:active+.btn-outline-primary, .btn-check:checked+.btn-outline-primary, .btn-outline-primary.active, .btn-outline-primary.dropdown-toggle.show, .btn-outline-primary:active {
+		color: #fff;
+		background-color: #854cc6;
+		border-color: #854cc6;
+	}
+	.btn-outline-primary {
+		color: black;
+		border-color: #854cc6;
+	}
+	.btn-outline-primary:hover {
+		color: #fff;
+		background: #854cc6;
+		border-color: #854cc6;
+	}
+</style>
 <body>
 <div class="loginForm">
 	<h3 style="margin-bottom: 20px">회원가입을 위해 본인인증을 해 주세요.</h3>

@@ -48,3 +48,7 @@
 	padding: 0;
 	font-size: 15px;
 }
+.form-check-input:checked {
+	background-color: #854cc6;
+	border-color: #854cc6;
+}

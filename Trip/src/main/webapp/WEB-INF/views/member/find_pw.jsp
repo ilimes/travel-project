@@ -6,10 +6,26 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="/resources/css/member/find_pw.css" rel="stylesheet">
+<style>
+	.btn-check:active+.btn-outline-primary, .btn-check:checked+.btn-outline-primary, .btn-outline-primary.active, .btn-outline-primary.dropdown-toggle.show, .btn-outline-primary:active {
+		color: #fff;
+		background-color: #854cc6;
+		border-color: #854cc6;
+	}
+	.btn-outline-primary {
+		color: black;
+		border-color: #854cc6;
+	}
+	.btn-outline-primary:hover {
+		color: #fff;
+		background: #854cc6;
+		border-color: #854cc6;
+	}
+</style>
 </head>
 <body>
 <div class="loginForm">
-	<h3>비밀번호를 잊어버리셨나요?</h3>
+	<h3>비밀번호 찾기</h3>
 	<div class="isMember">
 		<div class="left" onclick="location.href='/member/findIdForm';">아이디 찾기</div>
 		<div class="right" >비밀번호 찾기</div>
@@ -22,7 +38,7 @@
 				     <div>
 					      <input type="text" class="form-control" name="memName" id="memName" placeholder="이름을 입력해 주세요." style="display:inline-block; width:335px;">
 					      <label for="inputCity" class="form-label">&nbsp;</label> 
-					      <span class="btn-group" role="group" aria-label="Basic radio toggle button group" style="width: 150px;">
+					      <span class="btn-group" role="group" aria-label="Basic radio toggle button group" style="width: 150px; height: 38px;">
 							  <input type="radio" class="btn-check" name="memGender" id="btnradio1" autocomplete="off" value="남" checked>
 							  <label class="btn btn-outline-primary" for="btnradio1" style="padding: 0.275rem .75rem 0 0.85rem;">남</label>
 							  <input type="radio" class="btn-check" name="memGender" id="btnradio2" autocomplete="off" value="여">

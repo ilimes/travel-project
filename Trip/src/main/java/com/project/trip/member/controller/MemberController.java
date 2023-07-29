@@ -167,10 +167,10 @@ public class MemberController {
 		String memEmail = memberService.selectId(memberVO);
 		List<String> memNames = memberService.selectName(memberVO);
 		String memName = memNames.get(0);
-		String memCertiNum = getCertiNum();
+		String memCertiNum = getCertiNum(); // 랜덤문자 인증번호 생성
 		
 		Cookie cookie = new Cookie("certiNum", memCertiNum);
-		cookie.setMaxAge(60 * 3);//초단위
+		cookie.setMaxAge(60 * 3);// 초단위
 		response.addCookie(cookie);
 		
 		try {
@@ -178,7 +178,7 @@ public class MemberController {
 			MimeMessageHelper messageHelper;
 				
 			messageHelper = new MimeMessageHelper(message, true, "UTF-8");
-			messageHelper.setFrom("ayb0675@gmail.com");
+//			messageHelper.setFrom("mail@mail.com");
 			messageHelper.setTo(memEmail);
 			messageHelper.setSubject("인증번호");
 			messageHelper.setText(memName + "님의 인증번호는 " + memCertiNum + "입니다."  );
@@ -205,9 +205,13 @@ public class MemberController {
 			MimeMessageHelper messageHelper;
 			
 			messageHelper = new MimeMessageHelper(message, true, "UTF-8");
-			messageHelper.setFrom("ayb0675@gmail.com");
+			// 발신자 설정 -> 구글 정책 바뀌어 JavaMailSender에서 설정한 gmail로 설정됩니다.
+			// messageHelper.setFrom("mail@mail.com");
+			// 수신사 설정
 			messageHelper.setTo(memEmail);
+			// 메일 제목 설정
 			messageHelper.setSubject("인증번호");
+			// 메일 내용 설정
 			messageHelper.setText(memName + "님의 인증번호는 " + memCertiNum + "입니다."  );
 			
 			mailSender.send(message);
