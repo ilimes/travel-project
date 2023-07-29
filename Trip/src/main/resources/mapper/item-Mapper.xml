@@ -176,7 +176,7 @@
 				, ITEM_NAME
 				, LIKES_CNT
 				, REPLY_CNT
-		        , ROW_NUMBER() OVER(ORDER BY REVIEW_NUM) AS ROW_NUM
+		        , ROW_NUMBER() OVER(ORDER BY REVIEW_NUM ASC) AS ROW_NUM
 		    FROM (
 		    	SELECT REVIEW_NUM
 		            , TITLE
@@ -218,7 +218,6 @@
 									WHERE MEM_ID = ITEM_REVIEW.WRITER)) LIKE UPPER(CONCAT('%',#{writer},'%'))
 					</when>
 				</choose>
-		        ORDER BY REVIEW_NUM DESC
 		        ) AS A
 	        ) AS B
        WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
