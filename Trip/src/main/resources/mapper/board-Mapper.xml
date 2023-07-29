@@ -79,7 +79,7 @@
 									WHERE MEM_ID = TRIP_BOARD.WRITER)) LIKE UPPER(CONCAT('%',#{writer},'%')))
 					</when>
 				</choose>
-		        ORDER BY BOARD_NUM DESC
+		        ORDER BY CREATE_DATE DESC
 		        ) AS A
 	        ) AS B
        WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
