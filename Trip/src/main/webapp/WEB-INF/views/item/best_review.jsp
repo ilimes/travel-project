@@ -52,7 +52,18 @@
 					<c:otherwise>
 						<c:forEach items="${reviewList }" var="review" varStatus="vS">
 								<tr>
-									<td>${vS.index + 1  }위</td>
+									<td>
+										<c:if test="${vS.index == 0}">
+											<img src="/resources/svg/medal-gold.svg" width="24" />
+										</c:if>
+										<c:if test="${vS.index == 1}">
+											<img src="/resources/svg/medal-silver.svg" width="24" />
+										</c:if>
+										<c:if test="${vS.index == 2}">
+											<img src="/resources/svg/medal-bronze.svg" width="24" />
+										</c:if>
+										${vS.index + 1  }위
+									</td>
 									<td style="color: #725efe">
 										<c:forEach begin="1" end="${review.itemRate }">
 											★

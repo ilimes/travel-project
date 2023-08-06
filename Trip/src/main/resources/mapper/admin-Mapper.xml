@@ -124,7 +124,7 @@
 	<select id="selectMemberDetail" resultMap="memberMapper.member">
 		SELECT MEM_ID
 			, MEM_NAME
-			, MEM_BIRTHDAY
+			, DATE_FORMAT(JOIN_DATE, '%Y년 %m월 %d일') AS MEM_BIRTHDAY
 			, MEM_GENDER
 			, MEM_TELL
 		    , DATE_FORMAT(JOIN_DATE, '%Y년 %m월 %d일') AS JOIN_DATE

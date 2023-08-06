@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -61,7 +62,9 @@ thead tr {
 					<div class="col-3">
 						<div><label for="inputEmail4" class="form-label">생년월일</label></div>
 				   		<div>
-				   			<label>${memInfo.memBirthday }</label>
+				   			<label>
+								${fn:substring(memInfo.memBirthday, 0, 4)}년 ${fn:substring(memInfo.memBirthday, 4, 6)}월 ${fn:substring(memInfo.memBirthday, 6, 8)}일
+							</label>
 				    	</div>
 				    </div>
 					<div class="col-3">
