@@ -99,12 +99,12 @@
 	</select>
 	
 	<delete id="deleteCart">
-		DELETE TRIP_CART
+		DELETE FROM TRIP_CART
 		WHERE CART_CODE = #{cartCode}
 	</delete>
 	
 	<delete id="deleteCarts">
-		DELETE TRIP_CART
+		DELETE FROM TRIP_CART
 		WHERE MEM_ID = #{memId}
 		AND ITEM_CODE IN
 		<foreach collection="itemCodeArr" item="itemCode" open="(" close=")" separator=",">

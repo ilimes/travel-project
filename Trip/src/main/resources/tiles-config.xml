@@ -3,14 +3,14 @@
 
 <tiles-definitions>
 	<definition name="baseLayout" template="/WEB-INF/views/template/template.jsp">
-		<put-attribute name="title" value="Trip :: 여행사 프로젝트"/>
+		<put-attribute name="title" value="한빛여행사"/>
 		<put-attribute name="menu" value="/WEB-INF/views/template/menu.jsp"/>
 		<put-attribute name="body" value=""/>
 		<put-attribute name="foot" value="/WEB-INF/views/template/foot.jsp"/>
 	</definition>
 	
 	<definition name="secondLayout" template="/WEB-INF/views/template/template2.jsp">
-		<put-attribute name="title" value="Trip :: 여행사 프로젝트"/>
+		<put-attribute name="title" value="한빛여행사"/>
 		<put-attribute name="menu" value="/WEB-INF/views/template/menu.jsp"/>
 		<put-attribute name="side" value="/WEB-INF/views/template/side.jsp"/>
 		<put-attribute name="body" value=""/>

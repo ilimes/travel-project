@@ -3,6 +3,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="birthday" value="${memInfo.memBirthday}" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,7 +65,8 @@ thead tr {
 						<div><label for="inputEmail4" class="form-label">생년월일</label></div>
 				   		<div>
 				   			<label>
-								${fn:substring(memInfo.memBirthday, 0, 4)}년 ${fn:substring(memInfo.memBirthday, 4, 6)}월 ${fn:substring(memInfo.memBirthday, 6, 8)}일
+<%--								${fn:substring(birthday, 0, 4)}년 ${fn:substring(birthday, 4, 6)}월 ${fn:substring(birthday, 6, 8)}일--%>
+								${birthday}
 							</label>
 				    	</div>
 				    </div>

@@ -33,7 +33,7 @@
 				<div class="row upDiv">
 					<div class="col-md-12">
 						<input name="whereTrip" id="searchMainText" type="text" class="form-control"
-							placeholder="어디로 떠나세요?" onkeydown="if (event.keyCode == 13) { mainSearch(); }" style="height: 41px;">
+							placeholder="어디로 떠나세요?" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="원하는 여행명을 입력하고 검색 버튼을 눌러주세요!" onkeydown="if (event.keyCode == 13) { mainSearch(); }" style="height: 41px;">
 					</div>
 					<div class="col-md-12">
 						<span style="font-size: 18px; margin: 0 10px 0 10px;">출발일</span> <input name="whenTrip" id="searchMainDate" type="date" class="form-control datepicker"
@@ -49,7 +49,7 @@
 					<div class="col-md-12">
 						<div>
 							<h4>
-								<strong>베스트후기</strong><span style="font-size: 12.5px; float: right; padding: 4px; cursor: pointer; color: #472954; font-weight: bold; border-radius: 8px;" onclick="location.href='/item/bestReview?menuCode=MENU_002';">more</span>
+								<strong>베스트후기</strong><span style="font-size: 12.5px; float: right; padding: 4px; cursor: pointer; color: #472954; font-weight: bold; border-radius: 8px;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="클릭 시 베스트후기 페이지로 이동합니다." onclick="location.href='/item/bestReview?menuCode=MENU_002';">more</span>
 							</h4>
 						</div>
 						<div>
@@ -76,8 +76,19 @@
 										<c:otherwise>
 											<c:forEach items="${reviewList }" var="review" varStatus="vS">
 													<tr>
-														<td>${vS.index + 1  }위</td>
-														<td><div class="reviewTitle"><a href="/item/reviewDetail?menuCode=MENU_002&reviewNum=${review.reviewNum }">${review.title }</a></div></td>
+														<td>
+															<c:if test="${vS.index == 0}">
+																<img src="/resources/svg/medal-gold.svg" width="24" />
+															</c:if>
+															<c:if test="${vS.index == 1}">
+																<img src="/resources/svg/medal-silver.svg" width="24" />
+															</c:if>
+															<c:if test="${vS.index == 2}">
+																<img src="/resources/svg/medal-bronze.svg" width="24" />
+															</c:if>
+															${vS.index + 1  }위
+														</td>
+														<td><div class="reviewTitle" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="클릭 시 '${review.title }' 후기글로 이동합니다."><a href="/item/reviewDetail?menuCode=MENU_002&reviewNum=${review.reviewNum }">${review.title }</a></div></td>
 														<td>${review.likesCnt }</td>
 													</tr>
 											</c:forEach>

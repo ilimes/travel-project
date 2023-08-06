@@ -59,12 +59,13 @@
 			<td style="width: 250px;"><input type="date" class="form-control" name="memBirthday" id="memBirthday" value="${memberInfo.memBirthday }" readonly></td>
 			<td>성별</td>
 			<td style="width: 220px; text-align: center;">
-			<c:if test="${memberInfo.memGender eq '남'}">
-				<input type="radio" name="memGender" id="memGender" value="남" class="form-check-input" checked><span style="margin: 0 30px 0 0;"> 남</span>  
-			</c:if>
-			<c:if test="${memberInfo.memGender eq '여'}">
-				<input type="radio" name="memGender" id="memGender" value="여" class="form-check-input" checked><span style="margin: 0 30px 0 0;"> 여</span> 
-			</c:if>
+<%--			<c:if test="${memberInfo.memGender eq '남'}">--%>
+<%--				<input type="radio" name="memGender" id="memGender" value="남" class="form-check-input" checked><span style="margin: 0 30px 0 0;"> 남</span>  --%>
+<%--			</c:if>--%>
+<%--			<c:if test="${memberInfo.memGender eq '여'}">--%>
+<%--				<input type="radio" name="memGender" id="memGender" value="여" class="form-check-input" checked><span style="margin: 0 30px 0 0;"> 여</span> --%>
+<%--			</c:if>--%>
+				${memberInfo.memGender}
 			</td>
 		</tr>
 		<tr>
