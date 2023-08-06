@@ -248,7 +248,7 @@
 				, ITEM_NAME
 				, LIKES_CNT
 				, REPLY_CNT
-				, ROW_NUMBER() OVER(ORDER BY REVIEW_NUM) AS ROW_NUM
+				, ROW_NUMBER() OVER(ORDER BY LIKES_CNT DESC) AS ROW_NUM
 	        FROM (
 	        	SELECT REVIEW_NUM
 		            , TITLE
@@ -270,7 +270,6 @@
 		            	FROM REVIEW_REPLY
 		            	WHERE REVIEW_NUM = ITEM_REVIEW.REVIEW_NUM) AS REPLY_CNT
 		        FROM ITEM_REVIEW
-		        ORDER BY LIKES_CNT DESC
 		        ) AS A
 	        ) AS B
         WHERE ROW_NUM &lt;= #{rowNum}

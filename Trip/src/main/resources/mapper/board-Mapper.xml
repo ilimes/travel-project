@@ -170,13 +170,13 @@
 	</insert>
 	
 	<update id="updateReadCnt">
-		UPDATE TRIP_BOARD 
+		UPDATE TRIP_BOARD
 		SET READ_CNT = READ_CNT + 1
 		WHERE BOARD_NUM = #{boardNum}
 	</update>
 	
 	<delete id="deleteBoard">
-		DELETE TRIP_BOARD
+		DELETE FROM TRIP_BOARD
 		WHERE BOARD_NUM = #{boardNum}
 	</delete>
 	

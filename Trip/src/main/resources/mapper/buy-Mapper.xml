@@ -219,7 +219,7 @@
 	</select>
 	
 	<delete id="deleteTempBook">
-		DELETE BOOK_ITEM
+		DELETE FROM BOOK_ITEM
 		WHERE BOOK_NUM = #{bookNum}
 		AND TEMP_EMAIL = #{tempEmail}
 	</delete>
