@@ -12,8 +12,11 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -110,7 +113,7 @@ public class AdminController {
 	
 	//상품등록 페이지에서 등록버튼 클릭
 	@PostMapping("/regItem")
-	public String regItem(ItemVO itemVO, MultipartHttpServletRequest multi, Model model) {
+	public String regItem(ItemVO itemVO, MultipartHttpServletRequest multi, Model model, HttpServletRequest request) {
 
 		//이미지 정보를 세팅할 공간(List) 생성
 		List<ImageVO> imgList = new ArrayList<ImageVO>();
@@ -126,9 +129,13 @@ public class AdminController {
 		
 		//이미지 파일 업로드
 		Iterator<String> inputTagNames = multi.getFileNames();
-		
+
+		ServletContext ctx = request.getSession().getServletContext();
+		String webPath = "/resources/images/";
+		String uploadPath = ctx.getRealPath(webPath);
+
 		//첨부파일이 저장될 위치 지정
-		String uploadPath = "D:\\Git\\workspaceSTS\\Trip\\src\\main\\webapp\\resources\\images\\";
+//		String uploadPath = "D:\\Git\\workspaceSTS\\Trip\\src\\main\\webapp\\resources\\images\\";
 		
 		while(inputTagNames.hasNext()) {
 			//"mainImg", "subImg"
@@ -257,13 +264,17 @@ public class AdminController {
 	
 	//메인화면 슬라이드 이미지 등록
 	@PostMapping("/regImage")
-	public String regImage(MultipartHttpServletRequest multi, Model model, SlideImageVO slideImageVO) {
+	public String regImage(MultipartHttpServletRequest multi, Model model, SlideImageVO slideImageVO, HttpServletRequest request) {
 		
 		//이미지 파일 업로드
 		Iterator<String> inputTagNames = multi.getFileNames();
-		
+
+		ServletContext ctx = request.getSession().getServletContext();
+		String webPath = "/resources/images/slide/";
+		String uploadPath = ctx.getRealPath(webPath);
+
 		//첨부파일이 저장될 위치 지정
-		String uploadPath = "D:\\Git\\workspaceSTS\\Trip\\src\\main\\webapp\\resources\\images\\slide\\";
+//		String uploadPath = "D:\\Git\\workspaceSTS\\Trip\\src\\main\\webapp\\resources\\images\\slide\\";
 		
 		String inputTagName = inputTagNames.next();
 		
@@ -317,13 +328,17 @@ public class AdminController {
 	
 	//슬라이드 이미지 수정
 	@PostMapping("/updateImage")
-	public String updateImage(SlideImageVO slideImageVO, MultipartHttpServletRequest multi) {
+	public String updateImage(SlideImageVO slideImageVO, MultipartHttpServletRequest multi, HttpServletRequest request) {
 		
 		//이미지 파일 업로드
 		Iterator<String> inputTagNames = multi.getFileNames();
-		
+
+		ServletContext ctx = request.getSession().getServletContext();
+		String webPath = "/resources/images/slide/";
+		String uploadPath = ctx.getRealPath(webPath);
+
 		//첨부파일이 저장될 위치 지정
-		String uploadPath = "D:\\Git\\workspaceSTS\\Trip\\src\\main\\webapp\\resources\\images\\slide\\";
+//		String uploadPath = "D:\\Git\\workspaceSTS\\Trip\\src\\main\\webapp\\resources\\images\\slide\\";
 		
 		String inputTagName = inputTagNames.next();
 		String imgCode = slideImageVO.getImgCode();

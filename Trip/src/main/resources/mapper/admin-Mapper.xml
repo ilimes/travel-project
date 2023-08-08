@@ -212,13 +212,13 @@
 			, LATITUDE
 			, TRIP_AREA
 		) VALUES (
-			(SELECT 'PKG_' + LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ITEM_CODE, 6, 3))), 0) + 1, 3, 0) FROM TRIP_ITEM ALIAS_FOR_SUBQUERY)
+			(SELECT CONCAT('PKG_', LPAD(IFNULL(MAX(CAST(SUBSTRING(ITEM_CODE, 6, 3) AS SIGNED)), 0) + 1, 3, '0')) FROM TRIP_ITEM ALIAS_FOR_SUBQUERY)
 			, #{itemName}
 			, #{itemPrice}
 			, #{itemDetail}
 			, #{startDate}
 			, #{endDate}
-			, CONCAT(CONCAT(DATE_SUB(#{endDate}, #{startDate}),'박 '),CONCAT(DATE_SUB(#{endDate}, #{startDate}) + 1),'일'))
+			, CONCAT(CONCAT(DATEDIFF(#{endDate}, #{startDate}),'박 '),CONCAT(DATEDIFF(#{endDate}, #{startDate}) + 1,'일'))
 			, #{cateCode}
 			, #{tripAddr}
 			, #{longitude}
@@ -253,13 +253,13 @@
 		, START_DATE = #{startDate}
 		, END_DATE = #{endDate}
 		, ITEM_DETAIL = #{itemDetail}
-		, TRIP_DATE =  CONCAT(CONCAT(DATE_SUB(#{endDate}, #{startDate}),'박 '),CONCAT(DATE_SUB(#{endDate}, #{startDate}) + 1),'일'))
+		, TRIP_DATE = CONCAT(CONCAT(DATEDIFF(#{endDate}, #{startDate}),'박 '),CONCAT(DATEDIFF(#{endDate}, #{startDate}) + 1,'일'))
 		WHERE ITEM_CODE = #{itemCode}
 	</update>
 	
 	<!-- 다음에 올 아이템 코드 -->
 	<select id="selectNextItemCode" resultType="String">
-		SELECT 'PKG_' + LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ITEM_CODE, 6, 3))), 0) + 1, 3, 0) FROM TRIP_ITEM
+		SELECT CONCAT('PKG_', LPAD(IFNULL(MAX(CAST(SUBSTRING(ITEM_CODE, 6, 3) AS SIGNED)), 0) + 1, 3, '0')) FROM TRIP_ITEM
 	</select>
 	
 	<!-- 다음에 올 이미지 코드 -->
@@ -284,7 +284,7 @@
 			, ATTACHED_IMG_NAME
 			, IMAGE_INDEX
 		) VALUES(
-			(SELECT 'IMG_' + LPAD(NVL(MAX(TO_NUMBER(SUBSTR(IMG_CODE, 6, 3))), 0) + 1, 3, 0)
+			(SELECT CONCAT('IMG_', LPAD(IFNULL(MAX(CAST(SUBSTRING(IMG_CODE, 6, 3) AS SIGNED)), 0) + 1, 3, '0'))
 			FROM SLIDE_IMAGE)
 			, #{originImgName}
 			, #{attachedImgName}

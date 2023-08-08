@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -172,9 +173,13 @@ public class ItemController {
     		//파일 이름 가져오기
     		String fileName = upload.getOriginalFilename();
     		byte[] bytes = upload.getBytes();
-    		
+
+			ServletContext ctx = request.getSession().getServletContext();
+			String webPath = "/resources/ckeditor/images/";
+			String path = ctx.getRealPath(webPath);
+
     		//이미지 경로 생성
-    		String path = "D:/Git/workspaceSTS/Trip/src/main/webapp/resources/ckeditor/images/";	// 이미지 경로 설정(폴더 자동 생성)
+//    		String path = "D:/Git/workspaceSTS/Trip/src/main/webapp/resources/ckeditor/images/";	// 이미지 경로 설정(폴더 자동 생성)
     		String ckUploadPath = path + uid + "_" + fileName;
     		File folder = new File(path);
     		System.out.println("path:"+path);	// 이미지 저장경로 console에 확인
@@ -218,7 +223,10 @@ public class ItemController {
     throws ServletException, IOException{
     	
     	//서버에 저장된 이미지 경로
-    	String path = "D:/Git/workspaceSTS/Trip/src/main/webapp/resources/ckeditor/images/";	// 저장된 이미지 경로
+		ServletContext ctx = request.getSession().getServletContext();
+		String webPath = "/resources/ckeditor/images/";
+		String path = ctx.getRealPath(webPath);
+//    	String path = "D:/Git/workspaceSTS/Trip/src/main/webapp/resources/ckeditor/images/";	// 저장된 이미지 경로
     	System.out.println("path:"+path);
     	String sDirPath = path + uid + "_" + fileName;
     	

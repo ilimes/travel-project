@@ -128,7 +128,7 @@
         <div>후기가 정상적으로 등록되었습니다.</div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btns" data-bs-dismiss="modal" onclick="reviewWriteForm.submit();" style="display: inline-block; width: 90px; padding: 0; background: #ddd; color: black; box-shadow: 0px 1px 5px 0px #333, 5px 5px 15px 5px rgb(0 0 0 / 0%);" >확인</button>
+        <button type="button" class="btns" data-bs-dismiss="modal" <%-- onclick="reviewWriteForm.submit();" --%> style="display: inline-block; width: 90px; padding: 0; background: #ddd; color: black; box-shadow: 0px 1px 5px 0px #333, 5px 5px 15px 5px rgb(0 0 0 / 0%);" >확인</button>
       </div>
     </div>
   </div>
