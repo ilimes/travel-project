@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="trip:build">
+    <output-path>$PROJECT_DIR$/out/artifacts/trip_build</output-path>
+    <root id="archive" name="trip_war.war">
+      <element id="artifact" artifact-name="trip" />
+    </root>
+  </artifact>
+</component>

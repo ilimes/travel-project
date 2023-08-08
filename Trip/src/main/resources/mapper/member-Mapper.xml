@@ -194,7 +194,7 @@
 			, TEMP_GENDER
 			, BOOK_NUM
 		) VALUES (
-			(SELECT NVL(MAX(TEMP_NUM), 0) + 1 FROM TEMP_MEMBER)	
+			(SELECT IFNULL(MAX(TEMP_NUM), 0) + 1 FROM TEMP_MEMBER)
 			, #{tempName}
 			, #{tempTell}
 			, #{tempBirthday}

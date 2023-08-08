@@ -264,7 +264,7 @@
 	
 	<!-- 다음에 올 이미지 코드 -->
 	<select id="selectNextImgCode" resultType="int">
-		SELECT NVL(MAX(IMG_CODE), 0) + 1 
+		SELECT IFNULL(MAX(IMG_CODE), 0) + 1
 		FROM ITEM_IMAGE
 	</select>
 	
@@ -285,16 +285,16 @@
 			, IMAGE_INDEX
 		) VALUES(
 			(SELECT CONCAT('IMG_', LPAD(IFNULL(MAX(CAST(SUBSTRING(IMG_CODE, 6, 3) AS SIGNED)), 0) + 1, 3, '0'))
-			FROM SLIDE_IMAGE)
+			FROM SLIDE_IMAGE ALIAS_FOR_SUBQUERY)
 			, #{originImgName}
 			, #{attachedImgName}
-			, (SELECT NVL(MAX(IMAGE_INDEX), 0) + 1 FROM SLIDE_IMAGE)
+			, (SELECT IFNULL(MAX(IMAGE_INDEX), 0) + 1 FROM SLIDE_IMAGE ALIAS_FOR_SUBQUERY)
 		)
 	</insert>
 	
 	<!-- 슬라이드 이미지 인덱스 -->
 	<select id="selectImageIndex" resultType="int">
-		SELECT NVL(MAX(IMAGE_INDEX), 0) + 1 
+		SELECT IFNULL(MAX(IMAGE_INDEX), 0) + 1
 		FROM SLIDE_IMAGE
 	</select>
 	

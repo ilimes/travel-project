@@ -123,7 +123,7 @@
 			, MEM_ID
 			, BOOK_NUM
 			) VALUES (
-			(SELECT NVL(MAX(POINT_NUM),0)+1 FROM MEM_POINT)
+			(SELECT IFNULL(MAX(POINT_NUM),0)+1 FROM MEM_POINT ALIAS_FOR_SUBQUERY)
 			, (SELECT ITEM_PRICE
 				FROM TRIP_ITEM
 				WHERE ITEM_CODE =#{itemCode}) * #{travelers} * 0.05
@@ -142,7 +142,7 @@
 		)
 		<foreach collection="buyList" item="buyInfo" open="(" close=")" separator="UNION ALL" index="i">
 		SELECT
-			(SELECT NVL(MAX(POINT_NUM),0) + 1 + #{i} FROM MEM_POINT) AS POINT_NUM
+			(SELECT IFNULL(MAX(POINT_NUM),0) + 1 + #{i} FROM MEM_POINT) AS POINT_NUM
 			, (SELECT ITEM_PRICE
 				FROM TRIP_ITEM
 				WHERE ITEM_CODE =#{buyInfo.itemCode}) * #{buyInfo.travelers} * 0.05 AS BUY_PRICE
