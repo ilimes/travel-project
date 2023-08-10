@@ -6,14 +6,28 @@
 	padding: 30px;
 	margin-bottom: 30px;
 }
+
 .titleDiv{
 	border-bottom: 2px solid #cccccc;
 	margin-bottom: 40px;
 }
+
 h3{
 	font-weight: bold;
 	line-height: 1.3em;
 }
+
+/* 글자 수 n번째 줄 까지만 나오게 하기  */
+h4{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	word-wrap: break-word;
+	display: -webkit-box;
+	-webkit-line-clamp: 1; /* n */
+	-webkit-box-orient: vertical;
+	margin-bottom: 10px;
+}
+
 /* 글자 수 n번째 줄 까지만 나오게 하기  */
 .detailDiv{
 	overflow: hidden; 
@@ -22,7 +36,6 @@ h3{
 	display: -webkit-box; 
 	-webkit-line-clamp: 2; /* n */ 
 	-webkit-box-orient: vertical;
-	
 	margin-bottom: 10px;
 }
 
