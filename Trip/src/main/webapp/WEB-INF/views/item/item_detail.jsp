@@ -70,7 +70,7 @@
 				<div class="titleDiv">
 					<h3>여행 설명</h3>
 				</div>
-				<div style="margin-bottom: 40px;" id="itemDetail">${itemInfo.itemDetail }</div>
+				<pre style="margin-bottom: 40px; font-size: 15px; font-family: 'Pretendard-Regular';" id="itemDetail">${itemInfo.itemDetail }</pre>
 			</div>
 			<div class="col-8">
 				<div class="titleDiv">
@@ -83,7 +83,7 @@
 						<img src="/resources/images/${img.attachedImgName }" width="100%">
 					</c:if>
 				</c:forEach> --%>
-				
+
 				<!-- 상세 이미지 슬라이더 만들 곳 -->
 				<div id="slideShow">
 					<ul class="slides">

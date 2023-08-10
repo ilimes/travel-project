@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="trip:build" />
+      <artifact name="trip" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
@@ -11,10 +11,9 @@
   <component name="ChangeListManager">
     <list default="true" id="98e47e64-1abc-4daf-a77b-f88a273f6d27" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/admin-Mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/admin-Mapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/buy-Mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/buy-Mapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/item-Mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/item-Mapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/member-Mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/member-Mapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/item/item_detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/item/item_detail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/images/slide/slideImage1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/slide/slideImage1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/images/slide/slideImage2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/slide/slideImage2.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +180,7 @@
       <workItem from="1691412431422" duration="589000" />
       <workItem from="1691413030514" duration="1171000" />
       <workItem from="1691500082964" duration="3802000" />
-      <workItem from="1691504218655" duration="334000" />
+      <workItem from="1691504218655" duration="3621000" />
     </task>
     <servers />
   </component>
