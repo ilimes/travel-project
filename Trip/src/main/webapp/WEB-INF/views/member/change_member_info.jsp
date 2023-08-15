@@ -8,6 +8,22 @@
 <title>Insert title here</title>
 <link href="/resources/css/member/join.css" rel="stylesheet">
 </head>
+<style>
+	.btn-check:active+.btn-outline-primary, .btn-check:checked+.btn-outline-primary, .btn-outline-primary.active, .btn-outline-primary.dropdown-toggle.show, .btn-outline-primary:active {
+		color: #fff;
+		background-color: #854cc6;
+		border-color: #854cc6;
+	}
+	.btn-outline-primary {
+		color: black;
+		border-color: #854cc6;
+	}
+	.btn-outline-primary:hover {
+		color: #fff;
+		background: #854cc6;
+		border-color: #854cc6;
+	}
+</style>
 <body>
 <div class="container">
 	<div class="row justify-content-center">
@@ -34,9 +50,9 @@
 				      <label for="inputCity" class="form-label">&nbsp;</label>
 				      <div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="width: 200px;">
 						  <input type="radio" class="btn-check" name="memGender" id="btnradio1" autocomplete="off" value="남"  >
-						  <label class="btn btn-outline-primary" for="btnradio1" style="padding: 0.275rem .75rem 0 0.85rem;" >남</label>
+						  <label class="btn btn-outline-primary" for="btnradio1" style="padding: 0.275rem .75rem 0 0.85rem; padding-top: 7px;" >남</label>
 						  <input type="radio" class="btn-check" name="memGender" id="btnradio2" autocomplete="off" value="여" >
-						  <label class="btn btn-outline-primary" for="btnradio2" style="padding: 0.275rem .75rem 0 0.85rem;" >여</label>
+						  <label class="btn btn-outline-primary" for="btnradio2" style="padding: 0.275rem .75rem 0 0.85rem; padding-top: 7px;" >여</label>
 			     	  </div>
 				</div>
 			   </div>
@@ -72,18 +88,10 @@
 			   	  	  <button type="button" class="btn btn-secondary" id="tellChk" onclick="tellChk2();" style="width: 150px; height:38px;float: right;" >중복확인</button>
 			   	  </div>
 			   </div>
-			   <div class="col-1"></div>
-			   <div class="col-2 d-grid gap-2">
-			      <button type="submit" class="btns" id="btnChgInfo" style="margin-top: 30px; height: 50px;" >정보 수정</button>
-			   </div>
-			   <div class="col-1"></div>
-			   <div class="col-2 d-grid gap-2">
-			      <button type="button" class="btns" id="btnChgPw" style="margin-top: 30px; height: 50px; float: right;" onclick="chgPwModal();">비밀번호 변경</button>
-			   </div>
-			   <div class="col-1"></div>
-			   <div class="col-2 d-grid gap-2">
-			      <button type="button" class="btns" id="btnDeactive" style="margin-top: 30px; height: 50px; float: right;" onclick="deactivateMemberModal();">회원탈퇴</button>
-			   </div>
+			   <div class="col-24" style="display: flex; gap: 10px;">
+			      <button type="submit" class="btns" id="btnChgInfo" style="margin-top: 30px; height: 50px; z-index: 1;" >정보 수정</button>
+			      <button type="button" class="btns" id="btnChgPw" style="margin-top: 30px; height: 50px; float: right;  z-index: 1;" onclick="chgPwModal();">비밀번호 변경</button>
+			      <button type="button" class="btns" id="btnDeactive" style="margin-top: 30px; height: 50px; float: right;  z-index: 1;" onclick="deactivateMemberModal();">회원탈퇴</button>
 			</form>
 		</div>
 	</div>
@@ -152,7 +160,7 @@
 	      <div class="modal-header">
 	        <h5 class="modal-title" id="exampleModalLabel">정보수정</h5>
 	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-	      </div>
+	      </div>정
 	      <div class="modal-body">
 	        <div>
 	        	<div class="col-12" >

@@ -146,7 +146,7 @@ $('#changeMemberInfoForm').validate({
 		memZipcode:{
 			required: "우편번호를 입력해주세요."
 		},
-		memAddr:{
+		memAddrs:{
 			required: "주소를 입력해주세요."
 		},
 		memAddrDetail:{
