@@ -111,5 +111,39 @@ public class PageVO {
 		setEndNum();
 		
 	}
+
+	//페이징 처리를 위한 모든 데이터를 세팅 - displayCnt 정보가 있는 경우
+	public void setPageInfo(Integer displayCnt) {
+		setDisplayCnt(displayCnt);
+		//1 2 3 4 5
+		//6 7 8 9 10
+		//11 12 13 14 15
+		//화면에 보이는 마지막 페이지 번호 세팅
+		endPage = (int)(Math.ceil(nowPage / (double)displayPageCnt)) * displayPageCnt;
+
+		//화면에 보이는 첫 페이지 번호 세팅
+		beginPage = endPage - displayPageCnt + 1;
+
+		//전체 페이지 수 세팅 31   10   4
+		int totalPageCnt = (int)(Math.ceil(totalCnt / (double)displayCnt));
+
+		//next버튼 유무 세팅
+		if(endPage < totalPageCnt) {
+			next = true;
+
+		}
+		else {
+			next = false;
+			endPage = totalPageCnt;
+
+		}
+
+		//이전 버튼 유무 세팅
+		prev = beginPage == 1 ? false : true;
+
+		setStartNum();
+		setEndNum();
+
+	}
 	
 }

@@ -1,5 +1,5 @@
 .memTable{
-	width: 90%;
+	width: 100%;
 	margin: 0 auto;
 	border: 1px solid black;
 	border-collapse: collapse;
@@ -11,9 +11,13 @@
 .memTable tr {
 	height: 55px;
 }
+.memTable td {
+	width: 30%;
+}
 .memTable td:nth-child(odd) {
-	background-color: #adb5bd;
+	background-color: #dedede;
 	font-weight: bold;
+	width: 20%;
 }
 
 .memTable tr, td{

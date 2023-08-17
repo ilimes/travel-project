@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.project.trip.board.vo.BoardInfoVO;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -62,14 +63,20 @@ public class BoardInterceptor extends HandlerInterceptorAdapter{
 		boardVO.setContent(content);
 		String writer = request.getParameter("writer");
 		boardVO.setWriter(writer);
+
+		BoardInfoVO info = new BoardInfoVO();
+		info.setSideMenuCode(sideMenuCode);
+		BoardInfoVO boardInfo = boardService.selectBoardInfoDetail(info);
 		
-		String boardTitle = "";
-		if (sideMenuCode.equals("SIDE_MENU_001")) {
-			boardTitle = "공지사항";
-		} 
-		else if (sideMenuCode.equals("SIDE_MENU_002")) {
-			boardTitle = "1:1 문의";
-		} 
+//		String boardTitle = "";
+//		if (sideMenuCode.equals("SIDE_MENU_001")) {
+//			boardTitle = "공지사항";
+//		}
+//		else if (sideMenuCode.equals("SIDE_MENU_002")) {
+//			boardTitle = "1:1 문의";
+//		}
+
+		String boardTitle = boardInfo.getTitle();
 		
 		if(sideMenuCode.equals("SIDE_MENU_002")) {
 			HttpSession session = request.getSession();
@@ -87,10 +94,14 @@ public class BoardInterceptor extends HandlerInterceptorAdapter{
 		
 		//1. 페이징 처리 위해서 게시글 세기
 		boardVO.setTotalCnt(boardService.selectBoardListCnt(boardVO));
-		
+
 		// 2. 페이징 처리를 위한 세팅 메소드 호출
-		boardVO.setPageInfo();
-		
+		if (sideMenuCode != null) {
+			boardVO.setPageInfo(boardInfo.getDisplayCnt());
+		} else {
+			boardVO.setPageInfo();
+		}
+
 		//메뉴 코드가 null 이면 001로 설정
 		if(menuCode == null) {
 			menuCode = "MENU_001";

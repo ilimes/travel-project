@@ -2,6 +2,7 @@ package com.project.trip.board.service;
 
 import java.util.List;
 
+import com.project.trip.board.vo.BoardInfoVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -80,5 +81,23 @@ public class BoardServiceImpl implements BoardService {
 		sqlSession.update("boardMapper.updateBoardReply", boardReplyVO);
 	}
 
-	
+	@Override
+	public List<BoardInfoVO> selectBoardInfoList() {
+		return sqlSession.selectList("boardMapper.selectBoardInfoList");
+	}
+
+	@Override
+	public BoardInfoVO selectBoardInfoDetail(BoardInfoVO boardInfoVO) {
+		return sqlSession.selectOne("boardMapper.selectBoardInfoDetail", boardInfoVO);
+	}
+
+	@Override
+	public void updateBoardInfo(BoardInfoVO boardInfoVO) {
+		sqlSession.update("boardMapper.updateBoardInfo", boardInfoVO);
+	}
+
+	@Override
+	public int selectBoardInfoCnt() {
+		return sqlSession.selectOne("boardMapper.selectBoardInfoCnt");
+	}
 }

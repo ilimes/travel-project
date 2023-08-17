@@ -15,6 +15,13 @@
 		<result column="ROW_NUM" 						property="rowNum"/>
 		<result column="REPLY_CNT"						property="replyCnt"/>
 	</resultMap>
+
+	<resultMap type="com.project.trip.board.vo.BoardInfoVO" id="boardInfo">
+		<id column="BOARD_CODE" 						property="boardCode"/>
+		<result column="SIDE_MENU_CODE" 				property="sideMenuCode"/>
+		<result column="TITLE" 							property="title"/>
+		<result column="DISPLAY_CNT" 					property="displayCnt"/>
+	</resultMap>
 	
 	<resultMap type="com.project.trip.board.vo.BoardReplyVO" id="reply">
 		<id column="REPLY_NUM" 							property="replyNum"/>
@@ -24,7 +31,37 @@
 		<result column="WRITER" 						property="writer"/>
 		<result column="MEM_NAME" 						property="memName"/>
 	</resultMap>
-	
+
+	<select id="selectBoardInfoList" resultMap="boardInfo">
+		SELECT BOARD_CODE
+			 , TITLE
+			 , SIDE_MENU_CODE
+			 , DISPLAY_CNT
+		FROM BOARD_INFO
+	</select>
+
+	<select id="selectBoardInfoDetail" resultMap="boardInfo">
+		SELECT BOARD_CODE
+			 , TITLE
+			 , SIDE_MENU_CODE
+			 , DISPLAY_CNT
+		FROM BOARD_INFO
+		WHERE SIDE_MENU_CODE = #{sideMenuCode}
+	</select>
+
+	<update id="updateBoardInfo">
+		UPDATE BOARD_INFO
+		SET DISPLAY_CNT = #{displayCnt}
+		  	, TITLE = #{title}
+		WHERE BOARD_CODE = #{boardCode}
+	</update>
+
+	<!-- 전체 게시판 정보 수 -->
+	<select id="selectBoardInfoCnt" resultType="int">
+		SELECT COUNT(DISTINCT BOARD_CODE)
+		FROM BOARD_INFO
+	</select>
+
 	<select id="selectBoardList" resultMap="board">
 		SELECT BOARD_NUM
 		    , TITLE

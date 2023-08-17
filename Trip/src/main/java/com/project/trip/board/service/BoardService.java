@@ -3,6 +3,7 @@ package com.project.trip.board.service;
 import java.util.List;
 
 import com.project.trip.admin.vo.SideMenuVO;
+import com.project.trip.board.vo.BoardInfoVO;
 import com.project.trip.board.vo.BoardReplyVO;
 import com.project.trip.board.vo.BoardVO;
 import com.project.trip.item.vo.ReviewReplyVO;
@@ -46,4 +47,17 @@ public interface BoardService {
 	
 	//댓글 수정
 	void updateBoardReply(BoardReplyVO boardReplyVO);
+
+	//게시판 정보 목록
+	List<BoardInfoVO> selectBoardInfoList();
+
+	//게시판 정보 상세
+	BoardInfoVO selectBoardInfoDetail(BoardInfoVO boardInfoVO);
+
+	//게시판 정보 업데이트 (게시판)
+	void updateBoardInfo(BoardInfoVO boardInfoVO);
+
+	//게시판 정보 개수 세기
+	int selectBoardInfoCnt();
+
 }

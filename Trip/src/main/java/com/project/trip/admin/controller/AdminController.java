@@ -2,6 +2,7 @@ package com.project.trip.admin.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -16,6 +17,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.project.trip.board.vo.BoardInfoVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -425,6 +427,39 @@ public class AdminController {
 		model.addAttribute("bookList", adminService.selectBookList(bookViewVO));
 		
 		return "admin/book_list";
+	}
+
+
+	//게시판 관리 페이지 이동
+	@GetMapping("/boardManage")
+	public String boardManage(Model model, BoardInfoVO boardInfoVO) {
+
+		// 1. 전체 데이터의 개수 조회
+		int listCnt = boardService.selectBoardInfoCnt();
+
+		boardInfoVO.setTotalCnt(listCnt);
+
+		// 2. 페이징 처리를 위한 세팅 메소드 호출
+		boardInfoVO.setPageInfo();
+
+		model.addAttribute("boardInfoList", boardService.selectBoardInfoList());
+
+		return "admin/board_manage";
+	}
+
+	//게시판 관리 상세 페이지 이동
+	@GetMapping("/boardInfoDetail")
+	public String boardInfoDetail(Model model, BoardInfoVO boardInfoVO) {
+		model.addAttribute("boardInfo", boardService.selectBoardInfoDetail(boardInfoVO));
+
+		return "admin/board_info_detail";
+	}
+
+	@PostMapping("updateBoardInfo")
+	public String updateBoardInfo(BoardInfoVO boardInfoVO) {
+		boardService.updateBoardInfo(boardInfoVO);
+
+		return "redirect:/admin/boardManage";
 	}
 	
 	//예약 취소

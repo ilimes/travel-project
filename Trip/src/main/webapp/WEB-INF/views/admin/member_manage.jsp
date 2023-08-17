@@ -12,6 +12,7 @@
 <div class="titleDiv">
 		<h3>회원목록</h3>
 </div>
+<div style="margin-bottom: 10px;">상세 정보를 보시려면 컬럼을 클릭하세요.</div>
 <div class="row">
 <div class="row" style="margin: 0 auto;">
 	<div class="row mt-2">
@@ -26,8 +27,8 @@
 		</thead>
 		<tbody>
 		<c:forEach items="${memberList }" var="member" >
-			<tr>
-				<td><a href="/admin/memberDetail?memId=${member.memId }">${member.memName }</a></td>
+			<tr onclick="location.href='/admin/memberDetail?memId=${member.memId }'" style="cursor: pointer;">
+				<td>${member.memName }</td>
 				<td>${member.memBirthday }</td>
 				<td>${member.memTell }</td>
 				<td>${member.joinDate }</td>
