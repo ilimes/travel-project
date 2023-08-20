@@ -38,7 +38,7 @@
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
 			  			<path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"></path>
 					</svg> 
-					<div style="display: inline-block;"><a <c:if test="${selectedAdminMenu eq adminMenu.adminMenuCode }">style="font-weight: bold;"</c:if> href="/admin/${adminMenu.adminMenuUri }?adminMenuCode=${adminMenu.adminMenuCode}">${adminMenu.adminMenuName }</a></div>
+					<div style="display: inline-block;"><a <c:if test="${selectedAdminMenu eq adminMenu.adminMenuCode }">style="font-weight: bold; background: black; color: white; border-radius: 5px; padding: 5px;"</c:if> href="/admin/${adminMenu.adminMenuUri }?adminMenuCode=${adminMenu.adminMenuCode}">${adminMenu.adminMenuName }</a></div>
 				</li>
 			</c:forEach>
 		</ul>
