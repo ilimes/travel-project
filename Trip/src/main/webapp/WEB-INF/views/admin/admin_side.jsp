@@ -22,9 +22,6 @@
 	font-size: 18px;
 	line-height: 40px;
 }
-.sideMenuDiv div:hover{
-	font-weight: bold;
-}
 </style>
 </head>
 <body>
@@ -38,21 +35,32 @@
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
 			  			<path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"></path>
 					</svg> 
-					<div style="display: inline-block;"><a <c:if test="${selectedAdminMenu eq adminMenu.adminMenuCode }">style="font-weight: bold; background: black; color: white; border-radius: 5px; padding: 5px;"</c:if> href="/admin/${adminMenu.adminMenuUri }?adminMenuCode=${adminMenu.adminMenuCode}">${adminMenu.adminMenuName }</a></div>
+					<div style="display: inline-block;"><a <c:if test="${selectedAdminMenu eq adminMenu.adminMenuCode }">style="font-weight: bold; background: #5a5555; color: white; border-radius: 5px; padding: 5px;"</c:if> href="/admin/${adminMenu.adminMenuUri }?adminMenuCode=${adminMenu.adminMenuCode}">${adminMenu.adminMenuName }</a></div>
 				</li>
+				<c:if test="${selectedAdminMenu eq adminMenu.adminMenuCode }">
+					<div style="margin-left: 10px;">
+						<c:forEach items="${sideMenuList }" var="sideMenu">
+							<div <c:if test="${sideMenu.sideMenuCode eq selectedSideMenu }">style="font-weight: bold;"</c:if>>
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-right" viewBox="0 0 16 16">
+									<path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5z"/>
+								</svg> <a href="/admin/${sideMenu.sideMenuUri }?adminMenuCode=${sideMenu.adminMenuCode}&sideMenuCode=${sideMenu.sideMenuCode}">${sideMenu.sideMenuName }</a>
+							</div>
+						</c:forEach>
+					</div>
+				</c:if>
 			</c:forEach>
 		</ul>
 	</div>
-	<div><h4><strong>세부 메뉴</strong></h4></div>
-	<div class="sideMenuDiv">
-		<c:forEach items="${sideMenuList }" var="sideMenu">
-		<div <c:if test="${sideMenu.sideMenuCode eq selectedSideMenu }">style="font-weight: bold;"</c:if>>
-			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
-	  			<path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"></path>
-			</svg> <a href="/admin/${sideMenu.sideMenuUri }?adminMenuCode=${sideMenu.adminMenuCode}&sideMenuCode=${sideMenu.sideMenuCode}">${sideMenu.sideMenuName }</a>
-		</div>
-		</c:forEach>
-	</div>
+<%--	<div><h4><strong>세부 메뉴</strong></h4></div>--%>
+<%--	<div class="sideMenuDiv">--%>
+<%--		<c:forEach items="${sideMenuList }" var="sideMenu">--%>
+<%--		<div <c:if test="${sideMenu.sideMenuCode eq selectedSideMenu }">style="font-weight: bold;"</c:if>>--%>
+<%--			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">--%>
+<%--	  			<path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"></path>--%>
+<%--			</svg> <a href="/admin/${sideMenu.sideMenuUri }?adminMenuCode=${sideMenu.adminMenuCode}&sideMenuCode=${sideMenu.sideMenuCode}">${sideMenu.sideMenuName }</a>--%>
+<%--		</div>--%>
+<%--		</c:forEach>--%>
+<%--	</div>--%>
 	<div style="font-weight: bold; font-size: 18px; margin-bottom: 10px; cursor: pointer;" onclick="location.href='/item/mainPage';"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-square" viewBox="0 0 16 16">
 	  <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm11.5 5.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
 	</svg> 메인 페이지로 이동</div>
