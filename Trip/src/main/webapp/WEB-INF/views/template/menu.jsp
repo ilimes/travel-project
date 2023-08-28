@@ -73,7 +73,7 @@
 .menu01:hover{
 	cursor: pointer;
 }
-.subMenu01 {position: absolute; top: 164.2px; display: none; width: 1300px; height: 300px;  padding: 20px 0 0 15px; border: 1px solid #ccc; background: #fff; z-index: 999;  }
+.subMenu01 {position: absolute; top: 164.2px; display: none; width: 1300px; height: 330px;  padding: 20px 0 0 15px; border: 1px solid #ccc; background: #fff; z-index: 999;  }
 #nop {float: none; }
 
 </style>
