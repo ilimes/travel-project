@@ -3,6 +3,7 @@ package com.project.trip.member.controller;
 import java.io.Console;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.Member;
 import java.security.SecureRandom;
 import java.util.List;
 
@@ -18,6 +19,8 @@ import javax.websocket.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -103,7 +106,19 @@ public class MemberController {
 	
 	@PostMapping("/join")
 	public String join(MemberVO memberVO, Model model) {
+		// 가입 시 입력한 암호 가져오기
+		String pw = memberVO.getMemPw();
+
+		// 암호화 하기
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String encodedPw = encoder.encode(pw);
+
+		// 암호환 한 패스워드 다시 넣어준다
+		memberVO.setMemPw(encodedPw);
+
+		// 회원 가입
 		memberService.join(memberVO);
+
 		model.addAttribute("joinInfo", memberVO);
 		return "member/result_join";
 	}
@@ -111,14 +126,24 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(value = "/login", produces = "application/text; charset=utf8", method = RequestMethod.POST)
 	public String login(MemberVO memberVO, HttpSession session) {
-		MemberVO result = memberService.login(memberVO);
+		MemberVO memInfo = adminService.selectMemberDetail(memberVO);
+		// 입력한 암호 가져오기
+		String pw = memberVO.getMemPw();
+
+		// 회원정보 암호 가져오기
+		String infoPw = memInfo.getMemPw();
+
+		// 암호화 일치여부 확인
+		boolean checkResult = BCrypt.checkpw(pw, infoPw);
+
+		// MemberVO result = memberService.login(memberVO);
 		MemberVO deactivate = memberService.findDeactivateMember(memberVO);
-		if(result != null) {
+		if(checkResult) {
 			if(deactivate != null) {
 				return "deactivate";
 			}else {			
-				session.setAttribute("loginInfo", result);
-				return result.getMemName();
+				session.setAttribute("loginInfo", memInfo);
+				return memInfo.getMemName();
 			}
 		}else {
 			return "";

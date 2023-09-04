@@ -123,6 +123,7 @@
 	<!-- 회원 상세정보 조회 -->
 	<select id="selectMemberDetail" resultMap="memberMapper.member">
 		SELECT MEM_ID
+			, MEM_PW
 			, MEM_NAME
 			, DATE_FORMAT(JOIN_DATE, '%Y년 %m월 %d일') AS MEM_BIRTHDAY
 			, MEM_GENDER

@@ -37,17 +37,17 @@ $('#loginForm').validate({
 	//유효성 검사 실패 시 디자인
 	highlight: function ( element, errorClass, validClass ) {
       $(element).addClass('is-invalid').removeClass('is-valid');
-   },
-   //유효성 검사 성공 시 디자인
-   unhighlight: function (element, errorClass, validClass) {
+    },
+    //유효성 검사 성공 시 디자인
+    unhighlight: function (element, errorClass, validClass) {
       $(element).addClass('is-valid').removeClass('is-invalid');
-   },
-   
+    },
+
 	//유효성 검사 성공 시 실행
 	submitHandler: function(form) {
-		//선택한 태그의 name 속성을 memTells로 변경
 		var id = document.getElementById('memId').value;
-		var pw = document.getElementById('memPw').value	;
+		var pw = document.getElementById('memPw').value;
+
 		$.ajax({
 			url: '/member/login', //요청경로
 			type: 'post',
