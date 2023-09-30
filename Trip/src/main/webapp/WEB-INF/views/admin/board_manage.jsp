@@ -13,7 +13,7 @@
 <div class="titleDiv">
 		<h3>게시판 관리</h3>
 </div>
-<div style="margin-bottom: 10px;">게시판 정보를 수정하시려면 컬럼을 클릭하세요.</div>
+<div style="margin-bottom: 10px;">게시판 정보를 수정하시려면 항목을 클릭하세요.</div>
 <div class="row">
 	<table class="table table-hover bookTable">
 		<thead class="table-light">

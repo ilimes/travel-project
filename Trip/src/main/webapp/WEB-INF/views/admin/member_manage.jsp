@@ -12,7 +12,7 @@
 <div class="titleDiv">
 		<h3>회원목록</h3>
 </div>
-<div style="margin-bottom: 10px;">상세 정보를 보시려면 컬럼을 클릭하세요.</div>
+<div style="margin-bottom: 10px;">상세 정보를 보시려면 항목을 클릭하세요.</div>
 <div class="row">
 <div class="row" style="margin: 0 auto;">
 	<div class="row mt-2">
