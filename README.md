@@ -9,7 +9,7 @@
 약간의 기능 수정과, DB (Oracle → MariaDB) 변경 작업을 거치고  
 데모 사이트를 Oralce Cloud VM에 배포하였습니다. 
 
-🔗 [배포 링크](http://146.56.144.64:8080/)
+🔗 [배포 링크](hanbit.ilime.kr/)
 
 ---
 
